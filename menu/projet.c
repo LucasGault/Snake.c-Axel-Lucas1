@@ -2,20 +2,6 @@
 #include<graph.h>
 #include <stdio.h>
 
-void Options(int X,int Y){
-	InitialiserGraphique();
-    CreerFenetre(500,200,X,Y);
-    ChoisirCouleurDessin(CouleurParComposante(162,209,73));
-    RemplirRectangle(0,0,X,Y);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    EcrireTexte(60,100,"Vitesse",2);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    EcrireTexte(430,100,"Pommes",2);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    EcrireTexte(60,100,"Taille",2);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    EcrireTexte(500,600,"Retour",2);      
-}
 void Vitesse(int X, int Y){
 	InitialiserGraphique();
     CreerFenetre(500,200,X,Y);
@@ -33,6 +19,53 @@ void Vitesse(int X, int Y){
     EcrireTexte(465,245,"Rapide",2);
     ChoisirCouleurDessin(CouleurParComposante(0,0,0));
     EcrireTexte(245,50,"Vitesse",2);  
+}
+void Pommes(int X, int Y){
+	InitialiserGraphique();
+    CreerFenetre(500,200,X,Y);
+    ChoisirCouleurDessin(CouleurParComposante(162,209,73));
+    RemplirRectangle(0,0,X,Y);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(60,100,"Pommes",2);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(28,245,"-",2);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(250,245,"/mettre le nb de pommes\\",1);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(465,245,"+",2);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(500,600,"Retour",2);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(10,600,"Menu",2);
+}
+void Taille (int X, int Y){
+	InitialiserGraphique();
+    CreerFenetre(500,200,X,Y);
+    ChoisirCouleurDessin(CouleurParComposante(162,209,73));
+    RemplirRectangle(0,0,X,Y);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(500,600,"Retour",2);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(10,600,"Menu",2);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(28,230,"Serpent",2);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(28,260,"Grille",2);
+    //ajouter + - le nb 
+}
+void Options(int X,int Y){
+	InitialiserGraphique();
+    CreerFenetre(500,200,X,Y);
+    ChoisirCouleurDessin(CouleurParComposante(162,209,73));
+    RemplirRectangle(0,0,X,Y);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(60,100,"Vitesse",2);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(430,100,"Pommes",2);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(60,100,"Taille",2);
+    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(500,600,"Retour",2);      
 }
 void Jeu(int X,int Y){
 	InitialiserGraphique();
