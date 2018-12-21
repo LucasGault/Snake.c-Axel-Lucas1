@@ -39,7 +39,9 @@ int main(int argc , int argv[]){
 	int timer_add;
 	dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
   	while (1){
-  		while(ToucheEnAttente() != 1 && debut == 0){}
+  		while(ToucheEnAttente() != 1 && debut == 0){
+  			timer_1 = Microsecondes() - timer_add;
+  		}
   		debut = 1;
   		chrono = Microsecondes();
   		milisecondes = (chrono - chrono_2)/1000;
