@@ -38,7 +38,6 @@ Pommes_liste init_Pommes_liste(int G_X , int G_Y , int nbr_pommes , int echelle)
 	int i,X,Y;
 	for (i = 0 ; i < nbr_pommes ; i++){
 		X = (rand() % (G_X - 1)) + 1;
-		printf("X = %d",X);
 		Y = (rand() % (G_Y - 1)) + 1;
 		if (Pomme_Pomme(&Pommes_liste_new,X * echelle,Y * echelle,i) == 1 || X * echelle == (G_X * echelle)/2){
 			while (Pomme_Pomme(&Pommes_liste_new,X * echelle,Y * echelle,i ) == 1 || X * echelle == (G_X * echelle)/2){

@@ -6,8 +6,7 @@ void init_Coord(int longueur , Serpent* Serpent_m, int C_X , int C_Y, int echell
   int i = 0;
   for(i = 0; i < longueur  ; i++){
     Serpent_m->tab[i].X = C_X;
-    Serpent_m->tab[i].Y = C_Y - (longueur*echelle -  i*echelle) + echelle; // Distribue les coordonés de façon à ce que la tête se trouve en derniére positions du serpent
-    printf("i*echelle = %d \n Y = %d\n", i*echelle,  Serpent_m->tab[i].Y );
+    Serpent_m->tab[i].Y = C_Y - (longueur*echelle -  i*echelle) + echelle; // Distribue les coordonés de façon à ce que la tête se trouve en derniére positions du serpents
   }
   Serpent_m->nbr_coord = longueur;
   Serpent_m->last_coord = longueur - 1;

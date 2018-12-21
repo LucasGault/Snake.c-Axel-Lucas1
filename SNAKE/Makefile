@@ -6,6 +6,7 @@ OFILES = Partie_Physique/Gestion_serpent.o \
 				 Partie_Physique/Gestion_collision.o \
 				 Partie_Graphique/Dessine_frame.o \
 				 Partie_Graphique/Controle_Graphique.o \
+				 Partie_Graphique/Timer.o \
 				 main.o
 
 CC = gcc

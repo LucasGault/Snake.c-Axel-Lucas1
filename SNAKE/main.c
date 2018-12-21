@@ -4,6 +4,7 @@
 #include "Partie_Physique/Gestion_collision.h"
 #include "Partie_Graphique/Dessine_frame.h"
 #include "Partie_Graphique/Controle_Graphique.h"
+#include "Partie_Graphique/Timer.h"
 #include <time.h>
 #include <graph.h>
 #include <stdio.h>
@@ -20,9 +21,7 @@ int main(int argc , int argv[]){
 	Serpent Serpent_1 = init_Serpent(taille_ini,(30 * echelle) ,(20 * echelle),nbr_pommes*2 + taille_ini  ,echelle);
 	//position_serpent(&Serpent_1);
 	Pommes_liste Pommes_liste_1 = init_Pommes_liste(60,40,nbr_pommes, echelle);
-	position_pommes(&Pommes_liste_1);
 	Obstacle_liste Obstacle_liste_1 = init_Obstacle_liste(60 ,40 ,nbr_obstacle,&Pommes_liste_1,echelle);
-	position_obstacle(&Obstacle_liste_1);
 	InitialiserGraphique();
 	CreerFenetre(10,10,60 * echelle ,40 * echelle);
 	int Touche_s;
@@ -36,6 +35,8 @@ int main(int argc , int argv[]){
 	int clean = 0;
 	int pause = 0;
 	int debut = 0;
+	unsigned long timer_1 = Microsecondes();
+	int timer_add;
 	dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
   	while (1){
   		while(ToucheEnAttente() != 1 && debut == 0){}
@@ -47,6 +48,7 @@ int main(int argc , int argv[]){
   		}
   		if (ToucheEnAttente() && pause == 1){
   			Touche_s = Touche();
+  			timer_1 = Microsecondes() - timer_add;
   			if (Touche_s == XK_space){
 		    			pause = 0;
 		    		}
@@ -54,13 +56,13 @@ int main(int argc , int argv[]){
 		    			pause = 3;
 		    		} 
   		}
+
   		if ((milisecondes/intervale) > last_interval && pause == 0){
-	  		
+ 			timer_add = timer(timer_1);
 	  		last_interval = milisecondes/intervale;
 	  		dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
 	  		controle(&Serpent_1,echelle,&grandir,&Derniere_touche,&pause);
 			int Colli = Collision(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
-			printf("colli : %d \n",Colli);
 			if ( Colli == C_Pomme){
 				pommes_manger--;
 				Grandir_Serpent(&Serpent_1,&grandir);
@@ -78,7 +80,6 @@ int main(int argc , int argv[]){
 				}
 			}
 			
-			position_serpent(&Serpent_1);
 			if (Colli == C_Obstacle || Colli == C_Serpent ){
 				break;
 			}
