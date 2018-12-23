@@ -1,4 +1,4 @@
-#include "Timer.h"	
+#include "Timer.h"
 #include <stdio.h>
 #include <graph.h>
 unsigned long  timer(unsigned long timer_1){
@@ -17,7 +17,7 @@ unsigned long  timer(unsigned long timer_1){
     if ((minute%60) < 10){
     sprintf(minute_a , "0%d",minute%60);}
     else {sprintf(minute_a , "%d",minute%60);}
-    sprintf(afficher,"%s : %s \n",minute_a,seconde_a);
+    sprintf(afficher,"%s : %s ",minute_a,seconde_a);
     printf(afficher);
     return timer_add;
 }

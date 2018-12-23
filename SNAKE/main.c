@@ -40,6 +40,7 @@ int main(int argc , int argv[]){
 	dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
   	while (1){
   		while(ToucheEnAttente() != 1 && debut == 0){
+				dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
   			timer_1 = Microsecondes() - timer_add;
   		}
   		debut = 1;
@@ -56,34 +57,34 @@ int main(int argc , int argv[]){
 		    		}
 		    if (Touche_s == XK_Escape){
 		    			pause = 3;
-		    		} 
+		    		}
   		}
 
   		if ((milisecondes/intervale) > last_interval && pause == 0){
- 			timer_add = timer(timer_1);
+ 				timer_add = timer(timer_1);
+				printf("frame_numéro : %d\n",last_interval);
 	  		last_interval = milisecondes/intervale;
-	  		dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
+				dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
 	  		controle(&Serpent_1,echelle,&grandir,&Derniere_touche,&pause);
-			int Colli = Collision(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
-			if ( Colli == C_Pomme){
-				pommes_manger--;
-				Grandir_Serpent(&Serpent_1,&grandir);
+				int Colli = Collision(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
+				if ( Colli == C_Pomme){
+					pommes_manger--;
+					Grandir_Serpent(&Serpent_1,&grandir);
 				if (pommes_manger == 0){
-				nbr_pommes++;
-				pommes_manger = nbr_pommes;
-				nbr_obstacle++;
-				intervale = intervale - 5;
-				Serpent_1 = init_Serpent(taille_ini,(30 * echelle) ,(20 * echelle),nbr_pommes*2 + taille_ini,echelle);
-				Pommes_liste_1 = init_Pommes_liste(60,40,nbr_pommes, echelle);
-				Obstacle_liste_1 = init_Obstacle_liste(60 ,40 ,nbr_obstacle,&Pommes_liste_1,echelle);
-				Derniere_touche = XK_Up;
-				debut = 0;
-				dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);	
-				}
+					nbr_pommes++;
+					pommes_manger = nbr_pommes;
+					nbr_obstacle++;
+					intervale = intervale - 5;
+					Serpent_1 = init_Serpent(taille_ini,(30 * echelle) ,(20 * echelle),nbr_pommes*2 + taille_ini,echelle);
+					Pommes_liste_1 = init_Pommes_liste(60,40,nbr_pommes, echelle);
+					Obstacle_liste_1 = init_Obstacle_liste(60 ,40 ,nbr_obstacle,&Pommes_liste_1,echelle);
+					Derniere_touche = XK_Up;
+					debut = 0;
+					}
 			}
-			
-			if (Colli == C_Obstacle || Colli == C_Serpent ){
-				break;
+
+				if (Colli == C_Obstacle || Colli == C_Serpent ){
+					break;
 			}
 		}
 
