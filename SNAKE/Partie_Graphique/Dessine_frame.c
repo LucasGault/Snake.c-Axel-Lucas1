@@ -50,7 +50,7 @@ void dessine_frame(Serpent* Serpent_1,Pommes_liste* Pommes_liste_1,Obstacle_list
   ChoisirCouleurDessin(CouleurParNom("black"));
   dessine_obstacle(Obstacle_liste_1,multi);
   ChoisirEcran(0);
-  CopierZone(1,0,0,0,60*multi,40*multi,0,0);
+  CopierZone(1,0,0,0,60*multi,40*multi + 6*multi,0,0);
 
 
 

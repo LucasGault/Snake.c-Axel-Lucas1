@@ -23,7 +23,7 @@ int main(int argc , int argv[]){
 	Pommes_liste Pommes_liste_1 = init_Pommes_liste(60,40,nbr_pommes, echelle);
 	Obstacle_liste Obstacle_liste_1 = init_Obstacle_liste(60 ,40 ,nbr_obstacle,&Pommes_liste_1,echelle);
 	InitialiserGraphique();
-	CreerFenetre(10,10,60 * echelle ,40 * echelle);
+	CreerFenetre(10,10,60 * echelle ,40 * echelle + 5*echelle);
 	int Touche_s;
 	int grandir = 0;
 	int Derniere_touche = XK_Up;
@@ -36,40 +36,41 @@ int main(int argc , int argv[]){
 	int pause = 0;
 	int debut = 0;
 	unsigned long timer_1 = Microsecondes();
-	int timer_add;
+	int timer_add = timer(timer_1,echelle);;
 	dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
-  	while (1){
-  		while(ToucheEnAttente() != 1 && debut == 0){
-				dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
-  			timer_1 = Microsecondes() - timer_add;
-  		}
-  		debut = 1;
-  		chrono = Microsecondes();
-  		milisecondes = (chrono - chrono_2)/1000;
-  		if (pause == 3){
-  			break;
-  		}
-  		if (ToucheEnAttente() && pause == 1){
-  			Touche_s = Touche();
-  			timer_1 = Microsecondes() - timer_add;
-  			if (Touche_s == XK_space){
-		    			pause = 0;
-		    		}
-		    if (Touche_s == XK_Escape){
-		    			pause = 3;
-		    		}
-  		}
+	while (1){
+		while(ToucheEnAttente() != 1 && debut == 0){
+			dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
+			timer_1 = Microsecondes() - timer_add;
+		}
+		debut = 1;
+		chrono = Microsecondes();
+		milisecondes = (chrono - chrono_2)/1000;
+		if (pause == 3){
+			break;
+		}
+		if (ToucheEnAttente() && pause == 1){
+			Touche_s = Touche();
+			timer_1 = Microsecondes() - timer_add;
+			if (Touche_s == XK_space){
+				pause = 0;
+			}
+			if (Touche_s == XK_Escape){
+				pause = 3;
+			}
+		}
 
-  		if ((milisecondes/intervale) > last_interval && pause == 0){
- 				timer_add = timer(timer_1);
-				printf("frame_numéro : %d\n",last_interval);
-	  		last_interval = milisecondes/intervale;
+		if ((milisecondes/intervale) > last_interval && pause == 0){
+			timer_add = timer(timer_1,echelle);
+			last_interval = milisecondes/intervale;
+			controle(&Serpent_1,echelle,&grandir,&Derniere_touche,&pause);
+			dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
+			int Colli = Collision(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
+			if ( Colli == C_Pomme){
+				pommes_manger--;
+				Grandir_Serpent(&Serpent_1,&grandir);
 				dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
-	  		controle(&Serpent_1,echelle,&grandir,&Derniere_touche,&pause);
-				int Colli = Collision(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
-				if ( Colli == C_Pomme){
-					pommes_manger--;
-					Grandir_Serpent(&Serpent_1,&grandir);
+
 				if (pommes_manger == 0){
 					nbr_pommes++;
 					pommes_manger = nbr_pommes;
@@ -80,11 +81,11 @@ int main(int argc , int argv[]){
 					Obstacle_liste_1 = init_Obstacle_liste(60 ,40 ,nbr_obstacle,&Pommes_liste_1,echelle);
 					Derniere_touche = XK_Up;
 					debut = 0;
-					}
+				}
 			}
 
-				if (Colli == C_Obstacle || Colli == C_Serpent ){
-					break;
+			if (Colli == C_Obstacle || Colli == C_Serpent ){
+				break;
 			}
 		}
 
