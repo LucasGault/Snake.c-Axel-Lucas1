@@ -51,14 +51,7 @@ void controle(Serpent* Serpent_1 , int echelle, int*grandir,int*Derniere_touche,
 							//position_serpent(Serpent_1);
 							Ajuster_Serpent(Serpent_1,grandir);
 						}
-						int clean = 0;
-						while(ToucheEnAttente() > 0){
-							Touche();
-							clean++;
-							if (clean > 50){
-								break;
-							}
-						}
+
 					}
 		    		if (Touche_s == XK_space){
 		    			*pause = 1;
@@ -95,7 +88,14 @@ void controle(Serpent* Serpent_1 , int echelle, int*grandir,int*Derniere_touche,
 						*Derniere_touche = XK_Up;
 
 			 		}
-
-	  			}
+					int clean = 0;
+									while(ToucheEnAttente() > 0){
+										Touche();
+										clean++;
+										if (clean > 20){
+											break;
+										}
+									}
+	  }
 
 }

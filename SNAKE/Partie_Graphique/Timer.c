@@ -1,13 +1,37 @@
 #include "Timer.h"
 #include <stdio.h>
 #include <graph.h>
-
+void dessine_score(char afficher[],int echelle){
+	ChoisirEcran(1);
+	ChoisirCouleurDessin(CouleurParNom("white"));
+	int taille = TailleChaineEcran(afficher,2);
+	EcrireTexte(60*echelle - taille - 2 * echelle,43*echelle,afficher,2);
+}
+void score(int* score_p , int echelle){
+	char afficher[10];
+	if (*score_p < 10){
+		sprintf(afficher,"0000%d",*score_p);
+	}
+	else if(*score_p < 100){
+		sprintf(afficher,"000%d",*score_p);
+	}
+	else if(*score_p < 1000){
+		sprintf(afficher,"00%d",*score_p);
+	}
+	else if(*score_p < 10000){
+		sprintf(afficher,"0%d",*score_p);
+	}
+	else{
+		sprintf(afficher,"%d");
+	}
+	dessine_score(afficher,echelle);
+}
 void Dessine_Timer(char afficher[],int echelle){
 	ChoisirEcran(1);
 	ChoisirCouleurDessin(CouleurParNom("black"));
 	RemplirRectangle(0,40*echelle,60*echelle,6*echelle);
 	ChoisirCouleurDessin(CouleurParNom("white"));
-	EcrireTexte(20,43*echelle,afficher,2);
+	EcrireTexte(2*echelle,43*echelle,afficher,2);
 }
 
 

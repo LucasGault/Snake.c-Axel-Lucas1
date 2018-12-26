@@ -38,6 +38,8 @@ int main(int argc , int argv[]){
 	unsigned long timer_1 = Microsecondes();
 	int timer_add = timer(timer_1,echelle);;
 	dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
+	int score_p = 0;
+	score(&score_p,echelle);
 	while (1){
 		while(ToucheEnAttente() != 1 && debut == 0){
 			dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
@@ -62,11 +64,13 @@ int main(int argc , int argv[]){
 
 		if ((milisecondes/intervale) > last_interval && pause == 0){
 			timer_add = timer(timer_1,echelle);
+			score(&score_p,echelle);
 			last_interval = milisecondes/intervale;
 			controle(&Serpent_1,echelle,&grandir,&Derniere_touche,&pause);
 			dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
 			int Colli = Collision(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
 			if ( Colli == C_Pomme){
+				score_p = score_p +  5;
 				pommes_manger--;
 				Grandir_Serpent(&Serpent_1,&grandir);
 				dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle);
