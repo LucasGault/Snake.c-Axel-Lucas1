@@ -17,7 +17,7 @@ Serpent init_Serpent(int longueur, int C_X , int C_Y , int taillemax, int echell
   Serpent New_Serpent;
   New_Serpent.tab = (Coord *) malloc(sizeof(Coord) * taillemax);
   New_Serpent.taille_tab = taillemax;
-  init_Coord(longueur,&New_Serpent,C_X,C_Y,echelle);
+  init_Coord(longueur,&New_Serpent,C_X * echelle,C_Y * echelle,echelle);
   New_Serpent.nbr_coord = longueur;
 
   return New_Serpent;

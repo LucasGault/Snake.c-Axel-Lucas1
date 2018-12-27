@@ -39,10 +39,10 @@ void dessine_obstacle(Obstacle_liste * Obstacle_liste_1, int multi){
   }
 
 }
-void dessine_frame(Serpent* Serpent_1,Pommes_liste* Pommes_liste_1,Obstacle_liste* Obstacle_liste_1,int multi){
+void dessine_frame(Serpent* Serpent_1,Pommes_liste* Pommes_liste_1,Obstacle_liste* Obstacle_liste_1,int multi,int C_X, int C_Y){
   ChoisirEcran(1);
 	ChoisirCouleurDessin(CouleurParComposante(162,209,73));
-	RemplirRectangle(0,0,60 * multi,40 * multi);
+	RemplirRectangle(0,0,C_X * multi,C_Y * multi);
   ChoisirCouleurDessin(CouleurParComposante(69,115,232));
 	dessine_serpent(Serpent_1, multi);
   ChoisirCouleurDessin(CouleurParNom("red"));
@@ -50,7 +50,7 @@ void dessine_frame(Serpent* Serpent_1,Pommes_liste* Pommes_liste_1,Obstacle_list
   ChoisirCouleurDessin(CouleurParNom("black"));
   dessine_obstacle(Obstacle_liste_1,multi);
   ChoisirEcran(0);
-  CopierZone(1,0,0,0,60*multi,40*multi + 6*multi,0,0);
+  CopierZone(1,0,0,0,C_X*multi,C_Y*multi + 6*multi,0,0);
 
 
 

@@ -71,14 +71,14 @@ C_Collision Obstacle_test_C(Serpent *Serpent_1,Obstacle_liste *Obstacle_liste_1)
   return C_Rien;
 }
 
-C_Collision Grille_C(Serpent *Serpent_1,int echelle){
-  if (Serpent_1->tab[Serpent_1->last_coord].X < echelle|| Serpent_1->tab[Serpent_1->last_coord].X > 60*echelle ||
-    Serpent_1->tab[Serpent_1->last_coord].Y < echelle || Serpent_1->tab[Serpent_1->last_coord].Y > 40*echelle){
+C_Collision Grille_C(Serpent *Serpent_1,int echelle,int C_X,int C_Y){
+  if (Serpent_1->tab[Serpent_1->last_coord].X < echelle|| Serpent_1->tab[Serpent_1->last_coord].X > C_X*echelle ||
+    Serpent_1->tab[Serpent_1->last_coord].Y < echelle || Serpent_1->tab[Serpent_1->last_coord].Y > C_Y*echelle){
       return C_Obstacle;
   }
   return C_Rien;
 }
-C_Collision Collision(Serpent *Serpent_1,Pommes_liste *Pommes_liste_1, Obstacle_liste *Obstacle_liste_1,int echelle){
+C_Collision Collision(Serpent *Serpent_1,Pommes_liste *Pommes_liste_1, Obstacle_liste *Obstacle_liste_1,int echelle,int C_X,int C_Y){
 
   C_Collision Collision_T = Pommes_test_C(Serpent_1,Pommes_liste_1);
   if (Collision_T == C_Rien){
@@ -86,7 +86,7 @@ C_Collision Collision(Serpent *Serpent_1,Pommes_liste *Pommes_liste_1, Obstacle_
       if (Collision_T == C_Rien){
         Collision_T = Serpent_test_C(Serpent_1);
         if (Collision_T == C_Rien){
-          Collision_T = Grille_C(Serpent_1,echelle);
+          Collision_T = Grille_C(Serpent_1,echelle,C_X,C_Y);
         }
       }
   }
