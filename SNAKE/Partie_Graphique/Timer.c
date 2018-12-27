@@ -1,14 +1,13 @@
 #include "Timer.h"
 #include <stdio.h>
 #include <graph.h>
-void dessine_score(char afficher[],int echelle){
+void dessine_score(char afficher[],int echelle,int C_X,int C_Y){
 	ChoisirEcran(1);
 	ChoisirCouleurDessin(CouleurParNom("white"));
 	int taille = TailleChaineEcran(afficher,2);
-	EcrireTexte(60*echelle - taille - 2 * echelle,43*echelle,afficher,2);
+	EcrireTexte(C_X*echelle - taille - 2 * echelle,(C_Y + 3 + 1)*echelle,afficher,2);
 }
-
-void score(int* score_p , int echelle){
+void score(int* score_p , int echelle,int C_X,int C_Y){
 	char afficher[10];
 	if (*score_p < 10){
 		sprintf(afficher,"0000%d",*score_p);
@@ -23,20 +22,22 @@ void score(int* score_p , int echelle){
 		sprintf(afficher,"0%d",*score_p);
 	}
 	else{
-		sprintf(afficher,"%d",*score_p);
+		sprintf(afficher,"%d");
 	}
-	dessine_score(afficher,echelle);
+	dessine_score(afficher,echelle,C_X,C_Y);
 }
-
-void Dessine_Timer(char afficher[],int echelle){
+void Dessine_Timer(char afficher[],int echelle,int C_X, int C_Y){
 	ChoisirEcran(1);
-	ChoisirCouleurDessin(CouleurParNom("black"));
-	RemplirRectangle(0,40*echelle,60*echelle,6*echelle);
+	ChoisirCouleurDessin(CouleurParComposante(87,138,52));
+	RemplirRectangle(0,C_Y*echelle,C_X*echelle,2*echelle);
+	ChoisirCouleurDessin(CouleurParComposante(74,117,44));
+	RemplirRectangle(0,C_Y*echelle + 2 * echelle,C_X*echelle,6*echelle);
 	ChoisirCouleurDessin(CouleurParNom("white"));
-	EcrireTexte(2*echelle,43*echelle,afficher,2);
+	EcrireTexte(2*echelle,(C_Y + 3 + 1)*echelle,afficher,2);
 }
 
-unsigned long  timer(unsigned long timer_1,int echelle){
+
+unsigned long  timer(unsigned long timer_1,int echelle,int C_X , int C_Y){
 	unsigned long timer = Microsecondes();
 	char seconde_a[5];
 	char minute_a[5];
@@ -47,15 +48,12 @@ unsigned long  timer(unsigned long timer_1,int echelle){
 	int minute = seconde/60;
 	if ((seconde%60) < 10){
 		sprintf(seconde_a,"0%d",seconde%60);
-	}else{
-		sprintf(seconde_a,"%d",seconde%60);
 	}
+	else {sprintf(seconde_a,"%d",seconde%60);}
 	if ((minute%60) < 10){
-		sprintf(minute_a , "0%d",minute);
-	}else {
-		sprintf(minute_a , "%d",minute);
+		sprintf(minute_a , "0%d",minute);}
+	else {sprintf(minute_a , "%d",minute);}
+		sprintf(afficher,"%s : %s",minute_a,seconde_a);
+		Dessine_Timer(afficher,echelle,C_X,C_Y);
+		return timer_add;
 	}
-	sprintf(afficher,"%s : %s",minute_a,seconde_a);
-	Dessine_Timer(afficher,echelle);
-	return timer_add;
-}

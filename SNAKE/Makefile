@@ -22,4 +22,4 @@ Snake.out : $(OFILES)
 
 clean :
 	cd Partie_Physique/ && make clean && cd ../
-	rm -f $(OFILES) exo.out
+	rm -f $(OFILES) Snake.out
