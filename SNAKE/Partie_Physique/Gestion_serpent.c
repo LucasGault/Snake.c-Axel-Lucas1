@@ -27,8 +27,8 @@ void changer_taille(int newtaillemax, Serpent * Serpent_m){ //Change la taille d
   Serpent_m->tab = (Coord *) realloc(Serpent_m->tab, sizeof(Coord) * newtaillemax);
 }
 void Grandir_Serpent(Serpent * Serpent_1, int* nbr_plus){
-  Serpent_1->nbr_coord = Serpent_1->nbr_coord + 1;
-  *nbr_plus = *nbr_plus + 1;
+  //Serpent_1->nbr_coord = Serpent_1->nbr_coord + 1;
+  *nbr_plus = *nbr_plus + 2;
 
 }
 void Ajuster_Serpent(Serpent * Serpent_1, int* nbr_plus){

@@ -13,9 +13,9 @@
 
 int main(int argc , int argv[]){
 	srand(time(NULL));
-	int echelle = 15;
-	int C_X = 60;
-	int C_Y = 30;
+	int echelle = 18;
+	int C_X = 30;
+	int C_Y = 20;
 	int taille_ini = 10;
 	int nbr_pommes = 5;
 	int pommes_manger = nbr_pommes;
@@ -25,7 +25,7 @@ int main(int argc , int argv[]){
 	Pommes_liste Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
 	Obstacle_liste Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,&Pommes_liste_1,echelle);
 	InitialiserGraphique();
-	CreerFenetre(10,10,C_X * echelle ,C_Y * echelle + 5*echelle);
+	CreerFenetre(10,10,C_X * echelle + 4 * echelle ,C_Y * echelle + 5*echelle + 2 * echelle);
 	int Touche_s;
 	int grandir = 0;
 	int Derniere_touche = XK_Up;
@@ -39,6 +39,7 @@ int main(int argc , int argv[]){
 	int debut = 0;
 	unsigned long timer_1 = Microsecondes();
 	int timer_add = timer(timer_1,echelle,C_X,C_Y);;
+	dessine_arrierep(C_X, C_Y ,echelle);
 	dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle,C_X,C_Y);
 	int score_p = 0;
 	score(&score_p,echelle,C_X,C_Y);

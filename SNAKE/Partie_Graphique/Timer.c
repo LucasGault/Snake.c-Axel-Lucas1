@@ -5,7 +5,7 @@ void dessine_score(char afficher[],int echelle,int C_X,int C_Y){
 	ChoisirEcran(1);
 	ChoisirCouleurDessin(CouleurParNom("white"));
 	int taille = TailleChaineEcran(afficher,2);
-	EcrireTexte(C_X*echelle - taille - 2 * echelle,(C_Y + 3)*echelle,afficher,2);
+	EcrireTexte(C_X*echelle - taille - 2 * echelle,(C_Y + 3 + 1)*echelle,afficher,2);
 }
 void score(int* score_p , int echelle,int C_X,int C_Y){
 	char afficher[10];
@@ -28,10 +28,12 @@ void score(int* score_p , int echelle,int C_X,int C_Y){
 }
 void Dessine_Timer(char afficher[],int echelle,int C_X, int C_Y){
 	ChoisirEcran(1);
-	ChoisirCouleurDessin(CouleurParNom("black"));
-	RemplirRectangle(0,C_Y*echelle,C_X*echelle,6*echelle);
+	ChoisirCouleurDessin(CouleurParComposante(87,138,52));
+	RemplirRectangle(0,C_Y*echelle,C_X*echelle,2*echelle);
+	ChoisirCouleurDessin(CouleurParComposante(74,117,44));
+	RemplirRectangle(0,C_Y*echelle + 2 * echelle,C_X*echelle,6*echelle);
 	ChoisirCouleurDessin(CouleurParNom("white"));
-	EcrireTexte(2*echelle,(C_Y + 3)*echelle,afficher,2);
+	EcrireTexte(2*echelle,(C_Y + 3 + 1)*echelle,afficher,2);
 }
 
 
