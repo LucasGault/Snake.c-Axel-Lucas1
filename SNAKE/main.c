@@ -14,8 +14,8 @@
 int main(int argc , int argv[]){
 	srand(time(NULL));
 	int echelle = 18;
-	int C_X = 30;
-	int C_Y = 20;
+	int C_X = 60;
+	int C_Y = 40;
 	int taille_ini = 10;
 	int nbr_pommes = 5;
 	int pommes_manger = nbr_pommes;
@@ -32,11 +32,14 @@ int main(int argc , int argv[]){
 	unsigned long chrono = Microsecondes();
 	unsigned long chrono_2 = chrono;
 	int milisecondes;
-	int intervale = 150;
+	int intervale = 184;
+	int intervale_last = intervale;
 	int last_interval = 1;
 	int clean = 0;
 	int pause = 0;
 	int debut = 0;
+	int couleur_pause = 254;
+	int couleur_pause_m = 0;
 	unsigned long timer_1 = Microsecondes();
 	int timer_add = timer(timer_1,echelle,C_X,C_Y);;
 	dessine_arrierep(C_X, C_Y ,echelle);
@@ -54,21 +57,28 @@ int main(int argc , int argv[]){
 		if (pause == 3){
 			break;
 		}
-		if (ToucheEnAttente() && pause == 1){
-			Touche_s = Touche();
-			timer_1 = Microsecondes() - timer_add;
-			if (Touche_s == XK_space){
-				pause = 0;
-			}
-			if (Touche_s == XK_Escape){
-				pause = 3;
+		if ((milisecondes/intervale) > last_interval && pause == 1){
+			last_interval = milisecondes/intervale;
+			intervale = 50;
+			dessine_pause(C_X,C_Y,echelle,&couleur_pause,&couleur_pause_m);
+			if (ToucheEnAttente() && pause == 1){
+				Touche_s = Touche();
+				timer_1 = Microsecondes() - timer_add;
+				if (Touche_s == XK_space){
+					pause = 0;
+					intervale = intervale_last;
+					last_interval = milisecondes/intervale;
+				}
+				if (Touche_s == XK_Escape){
+					pause = 3;
+				}
 			}
 		}
 
 		if ((milisecondes/intervale) > last_interval && pause == 0){
+			last_interval = milisecondes/intervale;
 			timer_add = timer(timer_1,echelle,C_X,C_Y);
 			score(&score_p,echelle,C_X,C_Y);
-			last_interval = milisecondes/intervale;
 			controle(&Serpent_1,echelle,&grandir,&Derniere_touche,&pause);
 			dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle,C_X,C_Y);
 			int Colli = Collision(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle,C_X,C_Y);
@@ -79,10 +89,12 @@ int main(int argc , int argv[]){
 				dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle,C_X,C_Y);
 
 				if (pommes_manger == 0){
+					timer_add = timer(timer_1,echelle,C_X,C_Y);
+					score(&score_p,echelle,C_X,C_Y);
 					nbr_pommes++;
 					pommes_manger = nbr_pommes;
 					nbr_obstacle++;
-					intervale = intervale - 5;
+					intervale = intervale - 10;
 					Serpent_1 = init_Serpent(taille_ini,C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini,echelle);
 					Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
 					Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,&Pommes_liste_1,echelle);
