@@ -4,6 +4,6 @@
 #include "options.h"
 #include "menu.h"
 
-int main();
+int Menu_graphique(int * lancer_jeu);
 
 #endif

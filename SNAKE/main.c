@@ -5,19 +5,22 @@
 #include "Partie_Graphique/Dessine_frame.h"
 #include "Partie_Graphique/Controle_Graphique.h"
 #include "Partie_Graphique/Timer.h"
+#include "Menu/Menu_graphique.h"
 #include <time.h>
 #include <graph.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 
-int main(int argc , int argv[]){
+int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
 	srand(time(NULL));
+	/*
 	int echelle = 15;
 	int C_X = 60;
 	int C_Y = 40;
 	int taille_ini = 10;
 	int nbr_pommes = 5;
+	*/
 	int pommes_manger = nbr_pommes;
 	int nbr_obstacle =0;
 	Serpent Serpent_1 = init_Serpent(taille_ini, C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini  ,echelle);
@@ -25,7 +28,7 @@ int main(int argc , int argv[]){
 	Pommes_liste Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
 	Obstacle_liste Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,&Pommes_liste_1,echelle);
 	InitialiserGraphique();
-	CreerFenetre(0,0,C_X * echelle + 4 * echelle ,C_Y * echelle*echelle + 2 * echelle);
+	CreerFenetre(0,0,C_X * echelle + 4 * echelle ,C_Y * echelle + 7 * echelle);
 	int Touche_s;
 	int grandir = 0;
 	int Derniere_touche = XK_Up;
@@ -95,6 +98,7 @@ int main(int argc , int argv[]){
 					pommes_manger = nbr_pommes;
 					nbr_obstacle++;
 					intervale = intervale - 10;
+					intervale_last = intervale;
 					Serpent_1 = init_Serpent(taille_ini,C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini,echelle);
 					Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
 					Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,&Pommes_liste_1,echelle);
@@ -110,4 +114,17 @@ int main(int argc , int argv[]){
 
 	}
 	FermerGraphique();
+}
+
+int main(){
+	int lancer_jeu = 0;
+	int echelle = 15;
+	int C_X = 60;
+	int C_Y = 40;
+	int taille_ini = 10;
+	int nbr_pommes = 5;
+	Menu_graphique(&lancer_jeu);
+	if (lancer_jeu == 1){
+		jeu(C_X,C_Y,echelle,taille_ini,nbr_pommes);
+	}
 }

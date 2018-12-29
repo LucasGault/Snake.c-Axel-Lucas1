@@ -3,6 +3,6 @@
 #include "jeu.h"
 #include "options.h"
 
-void Menu(int X,int Y,int * continuer);
+void Menu(int X,int Y,int * continuer,int * lancer_jeu);
 
 #endif

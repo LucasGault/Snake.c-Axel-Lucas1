@@ -3,10 +3,10 @@
 #include <graph.h>
 #include <stdio.h>
 
-void Menu(int X,int Y ,int * continuer){
+void Menu(int X,int Y ,int * continuer,int *lancer_jeu){
     InitialiserGraphique();
     CreerFenetre(300,50,X,Y);
-    ChargerImageFond("serpent.png");
+    ChargerImageFond("Menu/serpent.png");
     ChoisirCouleurDessin(CouleurParComposante(255,255,255));
     EcrireTexte(260,Y/2,"Jouer",2);
     ChoisirCouleurDessin(CouleurParComposante(255,255,255));
@@ -23,7 +23,8 @@ void Menu(int X,int Y ,int * continuer){
     		//printf("X %d Y %d\n",_X,_Y );
             if(_X>=262 && _Y>=284 && _X<=341 && _Y<=306){
                 FermerGraphique();
-                Jeu(X,Y);
+                *continuer = 0;
+                *lancer_jeu = 1;
                 break;
             }
             if(_X>=257 && _Y>=394 && _X<=371 && _Y<=408){

@@ -35,18 +35,23 @@ void dessine_arrierep(int C_X, int C_Y , int echelle){
 void dessine_serpent(Serpent *Serpent_1, int echelle){
   int nbr = Serpent_1->nbr_coord;
   int i;
+  int ra,ga,ba;
   int r = 69;
   int g = 155;
   int b = 255;
+  int intensite = 2;
   if ( Serpent_1->last_coord + 1 - nbr >= 0){
-    r = r - 3 * nbr;
-    g = g - 3 * nbr;
-    b = b - 3 * nbr;
+    r = r - intensite * nbr;
+    g = g - intensite * nbr;
+    b = b - intensite * nbr;
     for (i = 0 ; i < nbr ; i++){
-      ChoisirCouleurDessin(CouleurParComposante(r,g,b));
-      r = r + 3;
-      b = b + 3;
-      g = g + 3;
+      if (r < 0){ra = 0;} else {ra = r;}
+      if (g < 0){ga = 0;} else {ga = g;}
+      if (b < 0){ba = 0;} else {ba = b;}
+      ChoisirCouleurDessin(CouleurParComposante(ra,ga,ba));
+      r = r + intensite;
+      b = b + intensite;
+      g = g + intensite;
       //printf("On dessine le carré à X = %d - %d = %d \n",(Serpent_1->tab[ Serpent_1->last_coord + 1 - (nbr - i)].X) , echelle , (Serpent_1->tab[ Serpent_1->last_coord + 1 - (nbr - i)].X) - echelle );
       //printf("On dessine le carré à Y = %d - %d = %d \n",(Serpent_1->tab[ Serpent_1->last_coord + 1  - (nbr - i)].Y), echelle , (Serpent_1->tab[ Serpent_1->last_coord + 1  - (nbr - i)].Y) - echelle);
       RemplirRectangle((Serpent_1->tab[ Serpent_1->last_coord + 1 - (nbr - i)].X) - echelle ,(Serpent_1->tab[ Serpent_1->last_coord + 1  - (nbr - i)].Y) - echelle,1 * echelle,1 * echelle);
@@ -54,19 +59,25 @@ void dessine_serpent(Serpent *Serpent_1, int echelle){
   }else{
     i = 0;
     while(Serpent_1->last_coord - i >= 0){
-      ChoisirCouleurDessin(CouleurParComposante(r,g,b));
-      r = r - 3;
-      g = g - 3;
-      b = b - 3;
+      if (r < 0){ra = 0;} else {ra = r;}
+      if (g < 0){ga = 0;} else {ga = g;}
+      if (b < 0){ba = 0;} else {ba = b;}
+      ChoisirCouleurDessin(CouleurParComposante(ra,ga,ba));
+      r = r - intensite;
+      g = g - intensite;
+      b = b - intensite;
       RemplirRectangle((Serpent_1->tab[ Serpent_1->last_coord - i].X) - echelle ,(Serpent_1->tab[ Serpent_1->last_coord - i].Y) - echelle,1*echelle,1*echelle);
       i++;
     }
     int j = 0;
     while(Serpent_1->taille_tab - 1 -  j >= Serpent_1->taille_tab - (nbr - i )){
-      ChoisirCouleurDessin(CouleurParComposante(r,g,b));
-      r = r - 3;
-      g = g - 3;
-      b = b - 3;
+      if (r < 0){ra = 0;} else {ra = r;}
+      if (g < 0){ga = 0;} else {ga = g;}
+      if (b < 0){ba = 0;} else {ba = b;}
+      ChoisirCouleurDessin(CouleurParComposante(ra,ga,ba));
+      r = r - intensite;
+      g = g - intensite;
+      b = b - intensite;
       RemplirRectangle((Serpent_1->tab[Serpent_1->taille_tab - 1 -  j ].X) - echelle ,(Serpent_1->tab[Serpent_1->taille_tab - 1 -  j ].Y) - echelle,1*echelle,1*echelle);
       j++;
     }
@@ -92,7 +103,7 @@ void dessine_obstacle(Obstacle_liste * Obstacle_liste_1, int echelle){
 void dessine_frame(Serpent* Serpent_1,Pommes_liste* Pommes_liste_1,Obstacle_liste* Obstacle_liste_1,int echelle,int C_X, int C_Y){
   int bordure = 2*echelle;
   ChoisirEcran(1);
-  
+
 	ChoisirCouleurDessin(CouleurParComposante(162,209,73));
 	RemplirRectangle(0,0,C_X * echelle,C_Y * echelle);
 

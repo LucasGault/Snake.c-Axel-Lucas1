@@ -1,15 +1,17 @@
 #include "Menu_graphique.h"
+#include "jeu.h"
+#include "options.h"
+#include "menu.h"
 #include <stdlib.h>
 #include <graph.h>
 #include <stdio.h>
 
 
-int main() {
+int Menu_graphique(int * lancer_jeu) {
 	int X = 600;
 	int Y = 610;
-    int continuer = 1;
-	while(continuer == 1 ){
-		Menu(X,Y,&continuer);
-		FermerGraphique();
+  int continuer = 1;
+	while(continuer == 1){
+		Menu(X,Y,&continuer,lancer_jeu);
 	}
 }
