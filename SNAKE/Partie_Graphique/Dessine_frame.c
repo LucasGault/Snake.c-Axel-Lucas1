@@ -85,7 +85,7 @@ void dessine_pommes(Pommes_liste* Pommes_liste_1, int echelle){
 void dessine_obstacle(Obstacle_liste * Obstacle_liste_1, int echelle){
   int sprite= ChargerSprite("pomme.png");
   for (int i = 0 ; i < Obstacle_liste_1->nbr_obstacle ; i++){
-    AfficherSprite(sprite,Obstacle_liste_1->tab[i].Coord.X - echelle,Obstacle_liste_1->tab[i].Coord.Y -echelle/*,echelle,echelle*/);
+    RemplirRectangle(Obstacle_liste_1->tab[i].Coord.X - echelle,Obstacle_liste_1->tab[i].Coord.Y -echelle,echelle,echelle);
   }
 }
 
@@ -97,7 +97,7 @@ void dessine_frame(Serpent* Serpent_1,Pommes_liste* Pommes_liste_1,Obstacle_list
 	RemplirRectangle(0,0,C_X * echelle,C_Y * echelle);
 
 	dessine_serpent(Serpent_1, echelle);
-  //ChoisirCouleurDessin(CouleurParNom("red"));
+  ChoisirCouleurDessin(CouleurParNom("red"));
   dessine_pommes(Pommes_liste_1,echelle);
   ChoisirCouleurDessin(CouleurParNom("black"));
   dessine_obstacle(Obstacle_liste_1,echelle);

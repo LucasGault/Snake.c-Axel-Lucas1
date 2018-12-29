@@ -8,17 +8,17 @@ void dessine_score(char afficher[],int echelle,int C_X,int C_Y){
 	EcrireTexte(C_X*echelle - taille - 2 * echelle,(C_Y + 3 + 1)*echelle,afficher,2);
 }
 void score(int* score_p , int echelle,int C_X,int C_Y){
-	char afficher[10];
+	char afficher[15];
 	if (*score_p < 10){
-		sprintf(afficher,"0000%d",*score_p);
+		sprintf(afficher,"Score : 0000%d",*score_p);
 	}else if(*score_p < 100){
-		sprintf(afficher,"000%d",*score_p);
+		sprintf(afficher,"Score : 000%d",*score_p);
 	}else if(*score_p < 1000){
-		sprintf(afficher,"00%d",*score_p);
+		sprintf(afficher,"Score : 00%d",*score_p);
 	}else if(*score_p < 10000){
-		sprintf(afficher,"0%d",*score_p);
+		sprintf(afficher,"Score : 0%d",*score_p);
 	}else{
-		sprintf(afficher,"%d",*score_p);
+		sprintf(afficher,"Score : %d",*score_p);
 	}
 	dessine_score(afficher,echelle,C_X,C_Y);
 }
@@ -31,13 +31,11 @@ void Dessine_Timer(char afficher[],int echelle,int C_X, int C_Y){
 	ChoisirCouleurDessin(CouleurParNom("white"));
 	EcrireTexte(2*echelle,(C_Y + 3 + 1)*echelle,afficher,2);
 }
-
-
 unsigned long  timer(unsigned long timer_1,int echelle,int C_X , int C_Y){
 	unsigned long timer = Microsecondes();
 	char seconde_a[5];
 	char minute_a[5];
-	char afficher[30];
+	char afficher[50];
 	timer = Microsecondes();
 	unsigned long timer_add = timer - timer_1;
 	int seconde = ((timer_add)/1000000);
@@ -52,7 +50,7 @@ unsigned long  timer(unsigned long timer_1,int echelle,int C_X , int C_Y){
 	}else {
 		sprintf(minute_a , "%d",minute);
 	}
-	sprintf(afficher,"%s : %s",minute_a,seconde_a);
+	sprintf(afficher,"Temps: %s : %s",minute_a,seconde_a);
 	Dessine_Timer(afficher,echelle,C_X,C_Y);
 	return timer_add;
 }
