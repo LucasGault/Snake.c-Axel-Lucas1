@@ -25,7 +25,7 @@ int main(int argc , int argv[]){
 	Pommes_liste Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
 	Obstacle_liste Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,&Pommes_liste_1,echelle);
 	InitialiserGraphique();
-	CreerFenetre(10,10,C_X * echelle + 4 * echelle ,C_Y * echelle + 5*echelle + 2 * echelle);
+	CreerFenetre(0,0,C_X * echelle * echelle ,C_Y * echelle*echelle + 2 * echelle);
 	int Touche_s;
 	int grandir = 0;
 	int Derniere_touche = XK_Up;
