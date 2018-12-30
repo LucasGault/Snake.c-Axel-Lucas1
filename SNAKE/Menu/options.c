@@ -2,8 +2,38 @@
 #include<stdlib.h>
 #include<graph.h>
 #include<stdio.h>
+void Dessiner_Bordure(int X_max , int Y , char * texte , couleur couleur_arriere , couleur couleur_texte){
+	ChoisirCouleurDessin(couleur_arriere); //On choisis la couleur de la bordure
+	int taille_h = TailleInfPolice(2) + TailleSupPolice(2); //On récupére la taille de la police pour pouvoir l'encadrer correctement
+	RemplirRectangle(0,Y,X_max,taille_h + 4);
+	ChoisirCouleurDessin(couleur_texte);
+	EcrireTexte(X_max/2 - TailleChaineEcran(texte,2)/2, Y + TailleSupPolice(2),texte,2);
+}
+void Dessiner_Texte_Encadrer(int X, int Y , char* texte, couleur couleur_arriere , couleur couleur_texte, int taille){
+	ChoisirCouleurDessin(couleur_arriere); //On choisis la couleur de la bordure
+	int taille_h = TailleInfPolice(taille) + TailleSupPolice(taille); //On récupére la taille de la police pour pouvoir l'encadrer correctement
+	int longueur_t = TailleChaineEcran(texte,taille);
+	RemplirRectangle(X - longueur_t/2, Y,longueur_t + 4, taille_h + 4);
+	ChoisirCouleurDessin(couleur_texte);
+	EcrireTexte(X - longueur_t/2,Y + 2 + TailleSupPolice(taille),texte,taille);
 
-void Options(int X,int Y){
+}
+void Dessiner_texte(int X , int Y , char* texte,couleur couleur_texte, int taille){
+	ChoisirCouleurDessin(couleur_texte);
+	int longueur_t = TailleChaineEcran(texte,taille);
+	EcrireTexte(X - longueur_t/2,Y + TailleSupPolice(taille),texte,taille);
+
+}
+void Dessine_texte_carre(int X , int Y , char*texte , couleur couleur_carre , couleur couleur_texte , int taille){
+	ChoisirCouleurDessin(couleur_carre); //On choisis la couleur de la bordure
+	int taille_h = TailleInfPolice(taille) + TailleSupPolice(taille); //On récupére la taille de la police pour pouvoir l'encadrer correctement
+	int longueur_t = TailleChaineEcran(texte,taille);
+	DessinerRectangle(X - taille_h/2,Y,taille_h,taille_h);
+	EcrireTexte(X - longueur_t/2, Y + TailleSupPolice(taille), texte,taille);
+
+}
+
+void Options(int X,int Y,int* continuer){
     //Initialisation fenetre
 	InitialiserGraphique();
     CreerFenetre(300,50,X,Y);
@@ -17,35 +47,23 @@ void Options(int X,int Y){
     ChoisirCouleurDessin(CouleurParComposante(62, 86, 15));
     EcrireTexte(500,45,"Jouer",2);
     //Vitesse
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    RemplirRectangle(0,100,600,30);
-    ChoisirCouleurDessin(CouleurParComposante(62, 86, 15));
-    EcrireTexte(245,120,"Vitesse",2);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    RemplirRectangle(52,150,60,30);
-    ChoisirCouleurDessin(CouleurParComposante(62, 86, 15));
-    EcrireTexte(65,170,"Normal",2);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    EcrireTexte(250,170,"Moyen",2);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    EcrireTexte(415,170,"Rapide",2);
+		int taille_h = TailleInfPolice(2) + TailleSupPolice(2);
+		int longueur_t = TailleChaineEcran("Facile",2);
+		Dessiner_Bordure(X,100,"Vitesse",CouleurParComposante(0,0,0),CouleurParComposante(62,86,15));
+		//Facile
+		Dessiner_Texte_Encadrer(X/6,150,"Facile",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),2);
+		//Moyen
+    Dessiner_Texte_Encadrer(X/2,150,"Moyen",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
+    //Rapide
+		Dessiner_Texte_Encadrer( 5*X/6,150,"Rapide",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
     //Pommes
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    RemplirRectangle(0,200,600,30);
-    ChoisirCouleurDessin(CouleurParComposante(62, 86, 15));
-    EcrireTexte(248,220,"Pommes",2);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    DessinerRectangle(77,250,30,30);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    EcrireTexte(90,270,"-",2);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    RemplirRectangle(240,250,60,30);
-    ChoisirCouleurDessin(CouleurParComposante(62, 86, 15));
-    EcrireTexte(260,270,"nbr",1);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    DessinerRectangle(452,250,30,30);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    EcrireTexte(465,270,"+",2);
+    Dessiner_Bordure(X,200,"Pommes",CouleurParComposante(0,0,0),CouleurParComposante(62,86,15));
+		// '-'
+		Dessine_texte_carre(X/6,250,"-",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
+		//'nbr'
+		Dessiner_Texte_Encadrer(X/2,250,"5",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
+		// '+'
+    Dessine_texte_carre(5*X/6,250,"+",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
     //Taille
     ChoisirCouleurDessin(CouleurParComposante(0,0,0));
     RemplirRectangle(0,300,600,30);
@@ -206,11 +224,13 @@ void Options(int X,int Y){
                 break;
             }
     		if(_X>=497 && _Y>=589 && _X<=600 && _Y<=610){
+					FermerGraphique();
     			break;
     		}
             //chui pas sur
             if(_X>=0 && _Y>=589 && _X<=87 && _Y<=610){
                 FermerGraphique();
+								break;
             }
             //
     	}
@@ -218,11 +238,13 @@ void Options(int X,int Y){
             //chui pas sur pour ça
             if(Touche()==XK_Escape){
                 FermerGraphique();
+								*continuer = 0;
+								break;
             }
             //
             if(Touche()==XK_Left){
                 break;
             }
         }
-   	}    
+   	}
 }

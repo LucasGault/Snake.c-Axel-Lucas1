@@ -29,7 +29,7 @@ void Menu(int X,int Y ,int * continuer,int *lancer_jeu){
             }
             if(_X>=257 && _Y>=394 && _X<=371 && _Y<=408){
             	FermerGraphique();
-                Options(X,Y);
+                Options(X,Y,continuer);
                 break;
             }
             if(_X>=7 && _Y>=587 && _X<=86 && _Y<=604){
