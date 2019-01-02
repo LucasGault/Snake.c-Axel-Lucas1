@@ -24,6 +24,18 @@ void dessine_pause(int C_X, int C_Y,int echelle,int *couleur_pause, int * couleu
   EcrireTexte((C_X/2)*echelle - (taille/2),(C_Y/2)*echelle + 2*echelle,"Appuyez sur la touche espace pour reprendre",1.5);
   CopierZone(1,0,0,0,C_X*echelle,C_Y*echelle + 6*echelle,bordure,bordure);
 }
+void dessine_debut(int C_X, int C_Y,int echelle,int niveau){
+  ChoisirEcran(1);
+  int bordure = 2*echelle;
+  ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+  char afficher[20];
+  sprintf(afficher,"Niveau : %d",niveau);
+  int taille = TailleChaineEcran(afficher,2);
+  EcrireTexte((C_X/2)*echelle - (taille/2),(C_Y/2)*echelle,afficher,2);
+  taille = TailleChaineEcran("Appuyer sur une touche pour commencer",1.5);
+  EcrireTexte((C_X/2)*echelle - (taille/2),(C_Y/2)*echelle + 2*echelle,"Appuyer sur une touche pour commencer",1.5);
+  CopierZone(1,0,0,0,C_X*echelle,C_Y*echelle + 6*echelle,bordure,bordure);
+}
 
 void dessine_arrierep(int C_X, int C_Y , int echelle){
   ChoisirEcran(0);

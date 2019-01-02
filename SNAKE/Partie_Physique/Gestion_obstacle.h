@@ -23,7 +23,8 @@ struct Obstacle_liste_def{
 };
 typedef struct Obstacle_liste_def Obstacle_liste;
 
-Pommes_liste init_Pommes_liste(int G_X , int G_Y , int nbr_pommes,int echelle);
-Obstacle_liste init_Obstacle_liste(int G_X, int G_Y, int nbr_obstacle,Pommes_liste* Pommes_liste_1,int echelle);
-
+Pommes_liste * init_Pommes_liste(int G_X , int G_Y , int nbr_pommes,int echelle);
+void free_pomme(Pommes_liste *Pommes_liste_1);
+Obstacle_liste * init_Obstacle_liste(int G_X, int G_Y, int nbr_obstacle,Pommes_liste* Pommes_liste_1,int echelle);
+void free_obstacle(Obstacle_liste* Obstacle_liste_1);
 #endif

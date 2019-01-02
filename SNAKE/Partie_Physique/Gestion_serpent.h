@@ -17,7 +17,8 @@ struct Serpent_def {
 //On appelle la structure plus facilement
 typedef struct Serpent_def Serpent;
 // Les fonctions :
-Serpent init_Serpent(int longueur, int C_X , int C_Y,int taillemax,int echelle);
+Serpent * init_Serpent(int longueur, int C_X , int C_Y,int taillemax,int echelle);
+void free_serpent(Serpent* Serpent_1);
 void Grandir_Serpent(Serpent * Serpent_1, int* nbr_plus);
 void Ajuster_Serpent(Serpent * Serpent_1, int* nbr_plus);
 void deplacement_droite(Serpent * Serpent_m, int echelle);

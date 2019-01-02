@@ -12,17 +12,20 @@ void init_Coord(int longueur , Serpent* Serpent_m, int C_X , int C_Y, int echell
   Serpent_m->last_coord = longueur - 1;
 }
 
-Serpent init_Serpent(int longueur, int C_X , int C_Y , int taillemax, int echelle) {
+Serpent * init_Serpent(int longueur, int C_X , int C_Y , int taillemax, int echelle) {
   //Initialise un Serpent avec une longueur de base définie , a des coord X,Y définis.
-  Serpent New_Serpent;
-  New_Serpent.tab = (Coord *) malloc(sizeof(Coord) * taillemax);
-  New_Serpent.taille_tab = taillemax;
-  init_Coord(longueur,&New_Serpent,C_X * echelle,C_Y * echelle,echelle);
-  New_Serpent.nbr_coord = longueur;
+  Serpent * New_Serpent = (Serpent * )malloc(1 * sizeof(Serpent));
+  New_Serpent->tab = (Coord *) malloc(sizeof(Coord) * taillemax);
+  New_Serpent->taille_tab = taillemax;
+  init_Coord(longueur,New_Serpent,C_X * echelle,C_Y * echelle,echelle);
+  New_Serpent->nbr_coord = longueur;
 
   return New_Serpent;
 }
-
+void free_serpent(Serpent* Serpent_1){
+  free(Serpent_1->tab);
+  free(Serpent_1);
+}
 void changer_taille(int newtaillemax, Serpent * Serpent_m){ //Change la taille du serpent
   Serpent_m->tab = (Coord *) realloc(Serpent_m->tab, sizeof(Coord) * newtaillemax);
 }

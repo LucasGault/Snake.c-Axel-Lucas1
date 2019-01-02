@@ -23,10 +23,10 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
 	*/
 	int pommes_manger = nbr_pommes;
 	int nbr_obstacle =0;
-	Serpent Serpent_1 = init_Serpent(taille_ini, C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini  ,echelle);
+	Serpent * Serpent_1 = init_Serpent(taille_ini, C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini  ,echelle);
 	//position_serpent(&Serpent_1);
-	Pommes_liste Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
-	Obstacle_liste Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,&Pommes_liste_1,echelle);
+	Pommes_liste * Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
+	Obstacle_liste * Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,Pommes_liste_1,echelle);
 	InitialiserGraphique();
 	CreerFenetre(0,0,C_X * echelle + 4 * echelle ,C_Y * echelle + 7 * echelle);
 	int Touche_s;
@@ -46,12 +46,15 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
 	unsigned long timer_1 = Microsecondes();
 	int timer_add = timer(timer_1,echelle,C_X,C_Y);;
 	dessine_arrierep(C_X, C_Y ,echelle);
-	dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle,C_X,C_Y);
+	//dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 	int score_p = 0;
-	score(&score_p,echelle,C_X,C_Y);
+	int niveau = 1;
+	score(&score_p,echelle,C_X,C_Y,niveau);
+	dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 	while (1){
 		while(ToucheEnAttente() != 1 && debut == 0){
-			dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle,C_X,C_Y);
+			//dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
+			dessine_debut(C_X,C_Y,echelle,niveau);
 			timer_1 = Microsecondes() - timer_add;
 		}
 		debut = 1;
@@ -81,19 +84,22 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
 		if ((milisecondes/intervale) > last_interval && pause == 0){
 			last_interval = milisecondes/intervale;
 			timer_add = timer(timer_1,echelle,C_X,C_Y);
-			score(&score_p,echelle,C_X,C_Y);
-			controle(&Serpent_1,echelle,&grandir,&Derniere_touche,&pause);
-			dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle,C_X,C_Y);
-			int Colli = Collision(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle,C_X,C_Y);
+			score(&score_p,echelle,C_X,C_Y,niveau);
+			controle(Serpent_1,echelle,&grandir,&Derniere_touche,&pause);
+			dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
+			int Colli = Collision(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 			if ( Colli == C_Pomme){
 				score_p = score_p +  5;
 				pommes_manger--;
-				Grandir_Serpent(&Serpent_1,&grandir);
-				dessine_frame(&Serpent_1,&Pommes_liste_1,&Obstacle_liste_1,echelle,C_X,C_Y);
+				Grandir_Serpent(Serpent_1,&grandir);
+				dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 
 				if (pommes_manger == 0){
+					free_serpent(Serpent_1);
+					free_pomme(Pommes_liste_1);
+					free_obstacle(Obstacle_liste_1);
 					timer_add = timer(timer_1,echelle,C_X,C_Y);
-					score(&score_p,echelle,C_X,C_Y);
+					score(&score_p,echelle,C_X,C_Y,niveau);
 					nbr_pommes++;
 					pommes_manger = nbr_pommes;
 					nbr_obstacle++;
@@ -101,13 +107,18 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
 					intervale_last = intervale;
 					Serpent_1 = init_Serpent(taille_ini,C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini,echelle);
 					Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
-					Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,&Pommes_liste_1,echelle);
+					Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,Pommes_liste_1,echelle);
 					Derniere_touche = XK_Up;
 					debut = 0;
+					dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
+					niveau++;
 				}
 			}
 
 			if (Colli == C_Obstacle || Colli == C_Serpent ){
+				free_serpent(Serpent_1);
+				free_pomme(Pommes_liste_1);
+				free_obstacle(Obstacle_liste_1);
 				break;
 			}
 		}
