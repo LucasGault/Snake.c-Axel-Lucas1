@@ -47,53 +47,52 @@ void Options(int X,int Y,int* continuer){
     ChoisirCouleurDessin(CouleurParComposante(62, 86, 15));
     EcrireTexte(500,45,"Jouer",2);
     //Vitesse
-		int taille_h = TailleInfPolice(2) + TailleSupPolice(2);
-		int longueur_t = TailleChaineEcran("Facile",2);
-		Dessiner_Bordure(X,100,"Vitesse",CouleurParComposante(0,0,0),CouleurParComposante(62,86,15));
-		//Facile
-		Dessiner_Texte_Encadrer(X/6,150,"Facile",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),2);
-		//Moyen
+	int taille_h = TailleInfPolice(2) + TailleSupPolice(2);
+	int longueur_t = TailleChaineEcran("Facile",2);
+	Dessiner_Bordure(X,100,"Vitesse",CouleurParComposante(0,0,0),CouleurParComposante(62,86,15));
+	//Facile
+	Dessiner_Texte_Encadrer(X/6,150,"Facile",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),2);
+	//Moyen
     Dessiner_Texte_Encadrer(X/2,150,"Moyen",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
     //Rapide
-		Dessiner_Texte_Encadrer( 5*X/6,150,"Rapide",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
+	Dessiner_Texte_Encadrer( 5*X/6,150,"Rapide",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
+
     //Pommes
     Dessiner_Bordure(X,200,"Pommes",CouleurParComposante(0,0,0),CouleurParComposante(62,86,15));
 		// '-'
 		Dessine_texte_carre(X/6,250,"-",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
 		//'nbr'
 		Dessiner_Texte_Encadrer(X/2,250,"5",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
-		// '+'
+        // '+'
     Dessine_texte_carre(5*X/6,250,"+",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
+
     //Taille
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    RemplirRectangle(0,300,600,30);
-    ChoisirCouleurDessin(CouleurParComposante(62, 86, 15));
-    EcrireTexte(248,320,"Taille",2);
+        Dessiner_Bordure(X,300,"Taille",CouleurParComposante(0,0,0),CouleurParComposante(62,86,15));
     //Taille Serpent
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    RemplirRectangle(87,335,60,30);
-    ChoisirCouleurDessin(CouleurParComposante(62, 86, 15));
-    EcrireTexte(97,351,"Serpent",2);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+        Dessiner_Texte_Encadrer(X/5,350,"Serpent",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
+    // '-'
+        Dessine_texte_carre(X/10,450,"-",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
+    /*ChoisirCouleurDessin(CouleurParComposante(0,0,0));
     DessinerRectangle(25,450,30,30);
     ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    EcrireTexte(37,470,"-",2);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(37,470,"-",2);*/
+    // 'nbr'
+        Dessiner_Texte_Encadrer(X/5,450,"10",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
+    /*ChoisirCouleurDessin(CouleurParComposante(0,0,0));
     RemplirRectangle(93,450,60,30);
     ChoisirCouleurDessin(CouleurParComposante(62, 86, 15));
-    EcrireTexte(112,470,"nbr",1);
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
+    EcrireTexte(112,470,"nbr",1);*/
+    //'+'
+        Dessine_texte_carre(3*X/10,450,"+",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
+    /*ChoisirCouleurDessin(CouleurParComposante(0,0,0));
     DessinerRectangle(185,450,30,30);
     ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    EcrireTexte(196,470,"+",2);
-    //traits milieu
+    EcrireTexte(196,470,"+",2);*/
+    ////traits milieu
     ChoisirCouleurDessin(CouleurParComposante(0,0,0));
     RemplirRectangle(265,330,2,280);
     //Taille Grille
-    ChoisirCouleurDessin(CouleurParComposante(0,0,0));
-    RemplirRectangle(387,335,60,30);
-    ChoisirCouleurDessin(CouleurParComposante(62, 86, 15));
-    EcrireTexte(397,351,"Grille",2);
+    Dessiner_Texte_Encadrer(3.5*X/5,350,"Grille",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
     //Taille Grille: Lignes
     ChoisirCouleurDessin(CouleurParComposante(0,0,0));
     RemplirRectangle(300,380,60,30);
@@ -111,7 +110,7 @@ void Options(int X,int Y,int* continuer){
     DessinerRectangle(315,525,30,30);
     ChoisirCouleurDessin(CouleurParComposante(0,0,0));
     EcrireTexte(327,544,"+",2);
-    //traits milieu
+    ////traits milieu (mettre bien au milieu)
     ChoisirCouleurDessin(CouleurParComposante(0,0,0));
     RemplirRectangle(415,365,1,245);
     //Taille Grille; Colonnes
@@ -230,7 +229,7 @@ void Options(int X,int Y,int* continuer){
             //chui pas sur
             if(_X>=0 && _Y>=589 && _X<=87 && _Y<=610){
                 FermerGraphique();
-								break;
+				break;
             }
             //
     	}
@@ -238,11 +237,12 @@ void Options(int X,int Y,int* continuer){
             //chui pas sur pour ça
             if(Touche()==XK_Escape){
                 FermerGraphique();
-								*continuer = 0;
-								break;
+				*continuer = 0;
+				break;
             }
             //
             if(Touche()==XK_Left){
+                FermerGraphique();
                 break;
             }
         }

@@ -10,7 +10,7 @@
 int Menu_graphique(int * lancer_jeu) {
 	int X = 600;
 	int Y = 610;
-  int continuer = 1;
+	int continuer = 1;
 	while(continuer == 1){
 		Menu(X,Y,&continuer,lancer_jeu);
 	}
