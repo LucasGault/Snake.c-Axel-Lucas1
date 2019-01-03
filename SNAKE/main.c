@@ -110,8 +110,9 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
 					Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,Pommes_liste_1,echelle);
 					Derniere_touche = XK_Up;
 					debut = 0;
-					dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 					niveau++;
+					dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
+					
 				}
 			}
 
