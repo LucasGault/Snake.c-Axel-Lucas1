@@ -50,12 +50,12 @@ void Options(int X,int Y,int* continuer){
 	int taille_h = TailleInfPolice(2) + TailleSupPolice(2);
 	int longueur_t = TailleChaineEcran("Facile",2);
 	Dessiner_Bordure(X,100,"Vitesse",CouleurParComposante(0,0,0),CouleurParComposante(62,86,15));
-	//Facile
-	Dessiner_Texte_Encadrer(X/6,150,"Facile",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),2);
-	//Moyen
-    Dessiner_Texte_Encadrer(X/2,150,"Moyen",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
-    //Rapide
-	Dessiner_Texte_Encadrer( 5*X/6,150,"Rapide",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
+    	//Facile
+    	Dessiner_Texte_Encadrer(X/6,150,"Facile",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),2);
+    	//Moyen
+        Dessiner_Texte_Encadrer(X/2,150,"Moyen",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
+        //Rapide
+    	Dessiner_Texte_Encadrer(5*X/6,150,"Rapide",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
 
     //Pommes
     Dessiner_Bordure(X,200,"Pommes",CouleurParComposante(0,0,0),CouleurParComposante(62,86,15));
@@ -68,6 +68,7 @@ void Options(int X,int Y,int* continuer){
 
     //Taille
     Dessiner_Bordure(X,300,"Taille",CouleurParComposante(0,0,0),CouleurParComposante(62,86,15));
+
     //Taille Serpent
     Dessiner_Texte_Encadrer(X/5,350,"Serpent",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
         // '-'
@@ -79,7 +80,7 @@ void Options(int X,int Y,int* continuer){
         //'+'
         Dessine_texte_carre(3*X/10,450,"+",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
     
-    ////traits milieu
+    //traits milieu
     ChoisirCouleurDessin(CouleurParComposante(0,0,0));
     RemplirRectangle(265,330,2,280);
 
@@ -95,7 +96,7 @@ void Options(int X,int Y,int* continuer){
         //'+'
         Dessine_texte_carre(X/1.75,490,"+",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
     
-    ////traits milieu
+    //traits milieu
     ChoisirCouleurDessin(CouleurParComposante(0,0,0));
     RemplirRectangle(420,365,1,245);
 
@@ -113,10 +114,12 @@ void Options(int X,int Y,int* continuer){
     EcrireTexte(500,600,"Retour",2);
     ChoisirCouleurDessin(CouleurParComposante(0,0,0));
     EcrireTexte(10,600,"Quitter (Esc)",2);
+
     while(1){
     	SourisPosition();
     	if (SourisCliquee() == 1){
-    		printf("X %d Y %d\n",_X,_Y );
+    		printf("X %d Y %d\n",_X,_Y ); 
+            //on prend les coordonnées des zones cliquable
             //facile
     		if(_X>=81 && _Y>=149 && _X<=122 && _Y<=167){
                 Dessiner_Texte_Encadrer(X/6,150,"Facile",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),2);
@@ -148,6 +151,7 @@ void Options(int X,int Y,int* continuer){
                 //faire nbr++
                 printf("+\n");
             }
+
             //change la taille du serpent
             if(_X>=54 && _Y>=449 && _X<=64 && _Y<=464){
                 //nbr --
@@ -157,6 +161,7 @@ void Options(int X,int Y,int* continuer){
                 //nbr++
                 printf("++\n");
             }
+
             //change le nbr de lignes
             if(_X>=336 && _Y>=420 && _X<=349 && _Y<=433){
                 //nbr--
@@ -166,6 +171,7 @@ void Options(int X,int Y,int* continuer){
                 //nbr++
                 printf("+++\n");
             }
+
             //change le nbr de colonnes
             if(_X>=494 && _Y>=419 && _X<=507 && _Y<=434){
                 //nbr--
@@ -175,31 +181,34 @@ void Options(int X,int Y,int* continuer){
                 //nbr++
                 printf("++++\n");
             }
-
+            //on lance le jeu
             if(_X>=497 && _Y>=30 && _X<=600 && _Y<=50){
                 FermerGraphique();
                 Jeu(X,Y);
                 break;
             }
+            //Retour au menu 
     		if(_X>=497 && _Y>=589 && _X<=600 && _Y<=610){
-					FermerGraphique();
+				FermerGraphique();
     			break;
     		}
-            //chui pas sur
+            //ferme le menu
             if(_X>=0 && _Y>=589 && _X<=87 && _Y<=610){
                 FermerGraphique();
+                *continuer = 0;
 				break;
             }
             //
     	}
+        
    		if(ToucheEnAttente()){
-            //chui pas sur pour ça
+            //Ferme le jeu
             if(Touche()==XK_Escape){
                 FermerGraphique();
 				*continuer = 0;
 				break;
             }
-            //
+            //retour au menu
             if(Touche()==XK_Left){
                 FermerGraphique();
                 break;
