@@ -57,9 +57,21 @@ void dessine_serpent(Serpent *Serpent_1, int echelle){
     g = g - intensite * nbr;
     b = b - intensite * nbr;
     for (i = 0 ; i < nbr ; i++){
-      if (r < 0){ra = 0;} else {ra = r;}
-      if (g < 0){ga = 0;} else {ga = g;}
-      if (b < 0){ba = 0;} else {ba = b;}
+      if(r < 0){
+        ra = 0;
+      }else{
+        ra = r;
+      }
+      if(g < 0){
+        ga = 0;
+      }else{
+        ga = g;
+      }
+      if(b < 0){
+        ba = 0;
+      }else{
+        ba = b;
+      }
       ChoisirCouleurDessin(CouleurParComposante(ra,ga,ba));
       r = r + intensite;
       b = b + intensite;
@@ -71,9 +83,21 @@ void dessine_serpent(Serpent *Serpent_1, int echelle){
   }else{
     i = 0;
     while(Serpent_1->last_coord - i >= 0){
-      if (r < 0){ra = 0;} else {ra = r;}
-      if (g < 0){ga = 0;} else {ga = g;}
-      if (b < 0){ba = 0;} else {ba = b;}
+      if(r < 0){
+        ra = 0;
+      }else{
+        ra = r;
+      }
+      if(g < 0){
+        ga = 0;
+      }else{
+        ga = g;
+      }
+      if(b < 0){
+        ba = 0;
+      }else{
+        ba = b;
+      }
       ChoisirCouleurDessin(CouleurParComposante(ra,ga,ba));
       r = r - intensite;
       g = g - intensite;
@@ -83,9 +107,21 @@ void dessine_serpent(Serpent *Serpent_1, int echelle){
     }
     int j = 0;
     while(Serpent_1->taille_tab - 1 -  j >= Serpent_1->taille_tab - (nbr - i )){
-      if (r < 0){ra = 0;} else {ra = r;}
-      if (g < 0){ga = 0;} else {ga = g;}
-      if (b < 0){ba = 0;} else {ba = b;}
+      if(r < 0){
+        ra = 0;
+      }else{
+        ra = r;
+      }
+      if(g < 0){
+        ga = 0;
+      }else{
+        ga = g;
+      }
+      if(b < 0){
+        ba = 0;
+      }else{
+        ba = b;
+      }
       ChoisirCouleurDessin(CouleurParComposante(ra,ga,ba));
       r = r - intensite;
       g = g - intensite;

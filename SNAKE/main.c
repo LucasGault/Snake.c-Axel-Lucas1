@@ -14,13 +14,6 @@
 
 int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes,int intervale,int *score_p , int * niveau){
 	srand(time(NULL));
-	/*
-	int echelle = 15;
-	int C_X = 60;
-	int C_Y = 40;
-	int taille_ini = 10;
-	int nbr_pommes = 5;
-	*/
 	*niveau = 1;
 	int pommes_manger = nbr_pommes;
 	int nbr_obstacle =0;
@@ -94,7 +87,6 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes,int intervale,
 				pommes_manger--;
 				Grandir_Serpent(Serpent_1,&grandir);
 				dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
-
 				if (pommes_manger == 0){
 					free_serpent(Serpent_1);
 					free_pomme(Pommes_liste_1);
@@ -106,18 +98,16 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes,int intervale,
 					pommes_manger = nbr_pommes;
 					nbr_obstacle++;
 					if(intervale > 30){intervale= intervale - 5;}
-					intervale_last = intervale;
-					grandir = 0;
-					Serpent_1 = init_Serpent(taille_ini,C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini,echelle);
-					Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
-					Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,Pommes_liste_1,echelle);
-					Derniere_touche = XK_Up;
-					debut = 0;
-					dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
-
+						intervale_last = intervale;
+						grandir = 0;
+						Serpent_1 = init_Serpent(taille_ini,C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini,echelle);
+						Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
+						Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,Pommes_liste_1,echelle);
+						Derniere_touche = XK_Up;
+						debut = 0;
+						dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 				}
 			}
-
 			if (Colli == C_Obstacle || Colli == C_Serpent ){
 				free_serpent(Serpent_1);
 				free_pomme(Pommes_liste_1);
@@ -125,7 +115,6 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes,int intervale,
 				break;
 			}
 		}
-
 	}
 	FermerGraphique();
 }
@@ -142,14 +131,14 @@ int main(){
 	int C_Y = 40;
 	int taille_ini = 10;
 	int nbr_pommes = 5;
-		while(continuer == 1){
-			intervale = intervale_choix;
-			Menu_graphique(&lancer_jeu,&nbr_pommes,&taille_ini,&C_X,&C_Y,&echelle,&intervale,&score_p,&niveau,&continuer);
-			intervale_choix = intervale;
-			if (lancer_jeu == 1){
-				continuer = 1;
-				lancer_jeu = 0;
-				jeu(C_X,C_Y,echelle,taille_ini,nbr_pommes,intervale,&score_p,&niveau);
-			}
+	while(continuer == 1){
+		intervale = intervale_choix;
+		Menu_graphique(&lancer_jeu,&nbr_pommes,&taille_ini,&C_X,&C_Y,&echelle,&intervale,&score_p,&niveau,&continuer);
+		intervale_choix = intervale;
+		if (lancer_jeu == 1){
+			continuer = 1;
+			lancer_jeu = 0;
+			jeu(C_X,C_Y,echelle,taille_ini,nbr_pommes,intervale,&score_p,&niveau);
+		}
 	}
 }
