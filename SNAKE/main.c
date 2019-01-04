@@ -74,6 +74,9 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes,int intervale,
 					last_interval = milisecondes/intervale;
 				}
 				if (Touche_s == XK_Escape){
+					timer_add = timer(timer_1,echelle,C_X,C_Y);
+					score(score_p,echelle,C_X,C_Y,*niveau);
+					dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 					pause = 3;
 				}
 			}
