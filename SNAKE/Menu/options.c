@@ -238,6 +238,7 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
             }
 						else{
 							*C_Y = 10;
+							sprintf(Afficher,"%d",*C_Y);
 							Dessiner_Texte_Encadrer(X/1.76,455,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(255, 0, 0),1);
 						}
 					}
@@ -259,12 +260,13 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
 									}
 								}
 
-								if(*C_X < 10){sprintf(Afficher,"0%d",*taille_ini);}else{sprintf(Afficher,"%d",*taille_ini);}
+								if(*C_Y < 10){sprintf(Afficher,"0%d",*taille_ini);}else{sprintf(Afficher,"%d",*taille_ini);}
 								sprintf(Afficher,"%d",*C_Y);
 								Dessiner_Texte_Encadrer(X/1.76,455,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
 						}
 						else{
 							*C_Y = 750;
+							sprintf(Afficher,"%d",*C_Y);
 							Dessiner_Texte_Encadrer(X/1.76,450,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(255, 0, 0),1);
 						}
 					}
@@ -290,7 +292,7 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
 									sprintf(Afficher,"%d",*C_Y);
 									Dessiner_Texte_Encadrer(X/1.76,455,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(255, 255, 200),1);
 								}
-								if(*taille_ini < 10){sprintf(Afficher,"0%d",*taille_ini);}else{sprintf(Afficher,"%d",*taille_ini);}
+								if(*C_X < 10){sprintf(Afficher,"0%d",*taille_ini);}else{sprintf(Afficher,"%d",*taille_ini);}
 								sprintf(Afficher,"%d",*C_X);
 								Dessiner_Texte_Encadrer(X/1.2,455,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
 							}
@@ -317,10 +319,10 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
 									while(*C_Y * *echelle > 800){
 									*C_Y = *C_Y - 1;
 									}
-									sprintf(Afficher,"%d",*C_X);
+									sprintf(Afficher,"%d",*C_Y);
 									Dessiner_Texte_Encadrer(X/1.76,455,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(255, 255, 200),1);
 								}
-								if(*taille_ini < 10){sprintf(Afficher,"0%d",*taille_ini);}else{sprintf(Afficher,"%d",*taille_ini);}
+								if(*C_X < 10){sprintf(Afficher,"0%d",*taille_ini);}else{sprintf(Afficher,"%d",*taille_ini);}
 								sprintf(Afficher,"%d",*C_X);
 								Dessiner_Texte_Encadrer(X/1.2,455,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
 						}
