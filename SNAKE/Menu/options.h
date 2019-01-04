@@ -2,6 +2,6 @@
 #define OPTIONS_H
 #include "jeu.h"
 
-void Options(int X,int Y,int* continuer);
+void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int * C_X, int * C_Y,int * lancer_jeu,int * echelle,int * intervale);
 
 #endif

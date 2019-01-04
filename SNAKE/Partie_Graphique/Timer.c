@@ -5,13 +5,13 @@ void dessine_score(char afficher[],int echelle,int C_X,int C_Y){
 	ChoisirEcran(1);
 	ChoisirCouleurDessin(CouleurParNom("white"));
 	int taille = TailleChaineEcran(afficher,2);
-	EcrireTexte(C_X*echelle - taille - 2 * echelle,(C_Y + 3 + 1)*echelle,afficher,2);
+	EcrireTexte(C_X*echelle - taille ,(C_Y + 2)*echelle + TailleSupPolice(2),afficher,2);
 }
 void dessine_niveau(int C_X, int C_Y,int niveau,int echelle){
 	char afficher[20];
 	sprintf(afficher,"Niveau : %d",niveau);
 	int taille = TailleChaineEcran(afficher,2);
-	EcrireTexte((C_X*echelle)/2 - taille/2 ,(C_Y + 3 + 1)*echelle,afficher,2);
+	EcrireTexte((C_X*echelle)/2 - taille/2 ,(C_Y + 2)*echelle + TailleSupPolice(2),afficher,2);
 
 }
 void score(int* score_p , int echelle,int C_X,int C_Y,int niveau){
@@ -35,9 +35,9 @@ void Dessine_Timer(char afficher[],int echelle,int C_X, int C_Y){
 	ChoisirCouleurDessin(CouleurParComposante(87,138,52));
 	RemplirRectangle(0,C_Y*echelle,C_X*echelle,2*echelle);
 	ChoisirCouleurDessin(CouleurParComposante(74,117,44));
-	RemplirRectangle(0,C_Y*echelle + 2 * echelle,C_X*echelle,6*echelle);
+	RemplirRectangle(0,C_Y*echelle + 2 * echelle,C_X*echelle,TailleInfPolice(2)+TailleSupPolice(2));
 	ChoisirCouleurDessin(CouleurParNom("white"));
-	EcrireTexte(2*echelle,(C_Y + 3 + 1)*echelle,afficher,2);
+	EcrireTexte(0,(C_Y + 2)*echelle + TailleSupPolice(2) ,afficher,2);
 }
 unsigned long  timer(unsigned long timer_1,int echelle,int C_X , int C_Y){
 	unsigned long timer = Microsecondes();

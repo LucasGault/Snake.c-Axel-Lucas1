@@ -12,7 +12,7 @@
 #include <stdlib.h>
 
 
-int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
+int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes,int intervale,int *score_p , int * niveau){
 	srand(time(NULL));
 	/*
 	int echelle = 15;
@@ -21,6 +21,7 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
 	int taille_ini = 10;
 	int nbr_pommes = 5;
 	*/
+	*niveau = 1;
 	int pommes_manger = nbr_pommes;
 	int nbr_obstacle =0;
 	Serpent * Serpent_1 = init_Serpent(taille_ini, C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini  ,echelle);
@@ -28,14 +29,13 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
 	Pommes_liste * Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
 	Obstacle_liste * Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,Pommes_liste_1,echelle);
 	InitialiserGraphique();
-	CreerFenetre(0,0,C_X * echelle + 4 * echelle ,C_Y * echelle + 7 * echelle);
+	CreerFenetre(0,0,C_X * echelle + 4*echelle ,C_Y * echelle + 4 * echelle + TailleInfPolice(2)+TailleSupPolice(2));
 	int Touche_s;
 	int grandir = 0;
 	int Derniere_touche = XK_Up;
 	unsigned long chrono = Microsecondes();
 	unsigned long chrono_2 = chrono;
 	int milisecondes;
-	int intervale = 184;
 	int intervale_last = intervale;
 	int last_interval = 1;
 	int clean = 0;
@@ -47,14 +47,12 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
 	int timer_add = timer(timer_1,echelle,C_X,C_Y);;
 	dessine_arrierep(C_X, C_Y ,echelle);
 	//dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
-	int score_p = 0;
-	int niveau = 1;
-	score(&score_p,echelle,C_X,C_Y,niveau);
+	score(score_p,echelle,C_X,C_Y,*niveau);
 	dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 	while (1){
 		while(ToucheEnAttente() != 1 && debut == 0){
 			//dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
-			dessine_debut(C_X,C_Y,echelle,niveau);
+			dessine_debut(C_X,C_Y,echelle,*niveau);
 			timer_1 = Microsecondes() - timer_add;
 		}
 		debut = 1;
@@ -84,12 +82,12 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
 		if ((milisecondes/intervale) > last_interval && pause == 0){
 			last_interval = milisecondes/intervale;
 			timer_add = timer(timer_1,echelle,C_X,C_Y);
-			score(&score_p,echelle,C_X,C_Y,niveau);
+			score(score_p,echelle,C_X,C_Y,*niveau);
 			controle(Serpent_1,echelle,&grandir,&Derniere_touche,&pause);
 			dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 			int Colli = Collision(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 			if ( Colli == C_Pomme){
-				score_p = score_p +  5;
+				*score_p = *score_p +  5;
 				pommes_manger--;
 				Grandir_Serpent(Serpent_1,&grandir);
 				dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
@@ -99,20 +97,20 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
 					free_pomme(Pommes_liste_1);
 					free_obstacle(Obstacle_liste_1);
 					timer_add = timer(timer_1,echelle,C_X,C_Y);
-					score(&score_p,echelle,C_X,C_Y,niveau);
+					score(score_p,echelle,C_X,C_Y,*niveau);
 					nbr_pommes++;
 					pommes_manger = nbr_pommes;
 					nbr_obstacle++;
-					intervale = intervale - 10;
+					if(intervale > 30){intervale= intervale - 5;}
 					intervale_last = intervale;
 					Serpent_1 = init_Serpent(taille_ini,C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini,echelle);
 					Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
 					Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,Pommes_liste_1,echelle);
 					Derniere_touche = XK_Up;
 					debut = 0;
-					niveau++;
+					*niveau = *niveau + 1;
 					dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
-					
+
 				}
 			}
 
@@ -129,14 +127,25 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes){
 }
 
 int main(){
+	int continuer = 1;
+	int score_p = 0;
+	int niveau = 0;
 	int lancer_jeu = 0;
 	int echelle = 15;
+	int intervale = 184;
+	int intervale_choix = intervale;
 	int C_X = 60;
 	int C_Y = 40;
 	int taille_ini = 10;
 	int nbr_pommes = 5;
-	Menu_graphique(&lancer_jeu);
-	if (lancer_jeu == 1){
-		jeu(C_X,C_Y,echelle,taille_ini,nbr_pommes);
+		while(continuer == 1){
+			intervale = intervale_choix;
+			Menu_graphique(&lancer_jeu,&nbr_pommes,&taille_ini,&C_X,&C_Y,&echelle,&intervale,&score_p,&niveau,&continuer);
+			intervale_choix = intervale;
+			if (lancer_jeu == 1){
+				continuer = 1;
+				lancer_jeu = 0;
+				jeu(C_X,C_Y,echelle,taille_ini,nbr_pommes,intervale,&score_p,&niveau);
+			}
 	}
 }

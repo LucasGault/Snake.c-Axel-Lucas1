@@ -21,7 +21,7 @@ void dessine_pause(int C_X, int C_Y,int echelle,int *couleur_pause, int * couleu
   int taille = TailleChaineEcran("Pause",2);
   EcrireTexte((C_X/2)*echelle - (taille/2),(C_Y/2)*echelle,"Pause",2);
   taille = TailleChaineEcran("Appuyer sur la touche espace pour reprendre",1.5);
-  EcrireTexte((C_X/2)*echelle - (taille/2),(C_Y/2)*echelle + 2*echelle,"Appuyez sur la touche espace pour reprendre",1.5);
+  EcrireTexte((C_X/2)*echelle - (taille/2),(C_Y/2)*echelle + TailleInfPolice(2)+TailleSupPolice(2),"Appuyez sur la touche espace pour reprendre",1.5);
   CopierZone(1,0,0,0,C_X*echelle,C_Y*echelle + 6*echelle,bordure,bordure);
 }
 void dessine_debut(int C_X, int C_Y,int echelle,int niveau){
@@ -32,8 +32,8 @@ void dessine_debut(int C_X, int C_Y,int echelle,int niveau){
   sprintf(afficher,"Niveau : %d",niveau);
   int taille = TailleChaineEcran(afficher,2);
   EcrireTexte((C_X/2)*echelle - (taille/2),(C_Y/2)*echelle,afficher,2);
-  taille = TailleChaineEcran("Appuyer sur une touche pour commencer",1.5);
-  EcrireTexte((C_X/2)*echelle - (taille/2),(C_Y/2)*echelle + 2*echelle,"Appuyer sur une touche pour commencer",1.5);
+  taille = TailleChaineEcran("Appuyez sur une touche pour commencer",1.5);
+  EcrireTexte((C_X/2)*echelle - (taille/2),(C_Y/2)*echelle + TailleInfPolice(2)+TailleSupPolice(2),"Appuyez sur une touche pour commencer",1.5);
   CopierZone(1,0,0,0,C_X*echelle,C_Y*echelle + 6*echelle,bordure,bordure);
 }
 
@@ -125,5 +125,5 @@ void dessine_frame(Serpent* Serpent_1,Pommes_liste* Pommes_liste_1,Obstacle_list
   ChoisirCouleurDessin(CouleurParNom("black"));
   dessine_obstacle(Obstacle_liste_1,echelle);
   ChoisirEcran(0);
-  CopierZone(1,0,0,0,C_X*echelle,C_Y*echelle + 6*echelle,bordure,bordure);
+  CopierZone(1,0,0,0,C_X*echelle,C_Y*echelle + 4*echelle + TailleInfPolice(2) + TailleSupPolice(2),bordure,bordure);
 }
