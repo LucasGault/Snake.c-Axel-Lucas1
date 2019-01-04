@@ -104,6 +104,7 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes,int intervale,
 					nbr_obstacle++;
 					if(intervale > 30){intervale= intervale - 5;}
 					intervale_last = intervale;
+					grandir = 0;
 					Serpent_1 = init_Serpent(taille_ini,C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini,echelle);
 					Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
 					Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,Pommes_liste_1,echelle);
