@@ -42,7 +42,7 @@ void dessine_arrierep(int C_X, int C_Y , int echelle){
   ChoisirCouleurDessin(CouleurParComposante(87,138,52));
   RemplirRectangle(0,0,C_X * echelle + 4 * echelle,C_Y * echelle + 4*echelle);
   ChoisirCouleurDessin(CouleurParComposante(74,117,44));
-  RemplirRectangle(0,C_Y * echelle + 4*echelle,C_X * echelle + 4 *echelle ,6*echelle);
+  RemplirRectangle(0,C_Y * echelle + 4*echelle,C_X * echelle + 4 *echelle ,TailleInfPolice(2)+TailleSupPolice(2));
 }
 void dessine_serpent(Serpent *Serpent_1, int echelle){
   int nbr = Serpent_1->nbr_coord;
