@@ -97,6 +97,7 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes,int intervale,
 					free_pomme(Pommes_liste_1);
 					free_obstacle(Obstacle_liste_1);
 					timer_add = timer(timer_1,echelle,C_X,C_Y);
+					*niveau = *niveau + 1;
 					score(score_p,echelle,C_X,C_Y,*niveau);
 					nbr_pommes++;
 					pommes_manger = nbr_pommes;
@@ -108,7 +109,6 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes,int intervale,
 					Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,Pommes_liste_1,echelle);
 					Derniere_touche = XK_Up;
 					debut = 0;
-					*niveau = *niveau + 1;
 					dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 
 				}
