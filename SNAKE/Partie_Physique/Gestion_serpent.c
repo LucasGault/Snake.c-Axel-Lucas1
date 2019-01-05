@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 void init_Coord(int longueur , Serpent* Serpent_m, int C_X , int C_Y, int echelle){
-  // initialise les coordonés d'un serpent
+  // initialise les coordonées d'un serpent
   int i = 0;
   for(i = 0; i < longueur  ; i++){
     Serpent_m->tab[i].X = C_X;

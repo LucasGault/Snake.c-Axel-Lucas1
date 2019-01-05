@@ -30,7 +30,7 @@ int Obstacle_Obstacle(Obstacle_liste* Obstacle_liste_1,int X , int Y , int i){
 	}
 	return 0;
 }
-
+//Cette fonction place aléatoirement les pommes sur la grille de jeu 
 Pommes_liste* init_Pommes_liste(int G_X , int G_Y , int nbr_pommes , int echelle){
 	Pommes_liste* Pommes_liste_new = malloc(sizeof(Pommes_liste));
 	Pommes_liste_new->tab = (Pomme*) malloc(sizeof(Pomme) * nbr_pommes);
@@ -55,6 +55,7 @@ void free_pomme(Pommes_liste *Pommes_liste_1){
 	free(Pommes_liste_1->tab);
 	free(Pommes_liste_1);
 }
+//Cette fonction place aléatoirement les Obstacles sur la grille de jeu 
 Obstacle_liste * init_Obstacle_liste(int G_X, int G_Y, int nbr_obstacle,Pommes_liste* Pommes_liste_1,int echelle){
 	Obstacle_liste * Obstacle_liste_new = (Obstacle_liste *)malloc(sizeof(Obstacle_liste));
 	Obstacle_liste_new->tab = (Obstacle*) malloc(sizeof(Obstacle) * nbr_obstacle);

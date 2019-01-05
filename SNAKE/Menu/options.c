@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<graph.h>
 #include<stdio.h>
+
 void Dessiner_Bordure(int X_max , int Y , char * texte , couleur couleur_arriere , couleur couleur_texte){
 	ChoisirCouleurDessin(couleur_arriere); //On choisis la couleur de la bordure
 	int taille_h = TailleInfPolice(2) + TailleSupPolice(2); //On récupére la taille de la police pour pouvoir l'encadrer correctement
@@ -44,8 +45,10 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
     RemplirRectangle(0,0,600,85);
     ChoisirCouleurDessin(CouleurParComposante(62, 86, 15));
     EcrireTexte(45,45,"Options",2);
-    //EcrireTexte(500,45,"Jouer",2);
-		Dessiner_texte(500,20,"Jouer",CouleurParComposante(62, 86, 15),2);
+    //Jouer
+	Dessiner_texte(500,20,"Jouer",CouleurParComposante(62, 86, 15),2);
+	//Reset
+	Dessiner_texte(X/2,20,"Reset",CouleurParComposante(62, 86, 15),2);
     //Vitesse
 	int taille_h = TailleInfPolice(2) + TailleSupPolice(2);
 	int longueur_t = TailleChaineEcran("Facile",2);
@@ -139,6 +142,7 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
     while(1){
     	SourisPosition();
     	if (SourisCliquee() == 1){
+    		//printf("X %d Y %d\n",_X,_Y);
             //on prend les coordonnées des zones cliquable
             //facile
     		if(_X>=X/6 - TailleChaineEcran("Facile",2)/2 && _Y>=150 - TailleInfPolice(2) - TailleSupPolice(2) && _X<=X/6 + TailleChaineEcran("Facile",2)/2  && _Y<=150 + TailleInfPolice(2) + TailleSupPolice(2)){
@@ -166,6 +170,7 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
             }
 			int taille_h = TailleInfPolice(2) + TailleSupPolice(2);
             //change le nbr de pommes
+            //-
             if(_X>=X/6 -taille_h/2 && _Y>=250&& _X<=X/6 -taille_h/2+ taille_h && _Y<=250 + taille_h){
 				*nbr_pommes = *nbr_pommes - 1;
 				if(*nbr_pommes >= 1){
@@ -181,6 +186,7 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
 					Dessiner_Texte_Encadrer(X/2,250,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(255, 0, 0),1);
 				}
             }
+            //+
 			if(_X>=5*X/6 -taille_h/2 && _Y>=250&& _X<=5*X/6 -taille_h/2+ taille_h && _Y<=250 + taille_h){
 				*nbr_pommes = *nbr_pommes + 1;
 				if(*nbr_pommes <= 99){
@@ -198,6 +204,7 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
             }
 
             //change la taille du serpent
+            //-
 			if(_X>=X/10 -taille_h/2 && _Y>=450&& _X<=X/10 -taille_h/2+ taille_h && _Y<=450 + taille_h){
 				*taille_ini = *taille_ini - 1;
 				if(*taille_ini >= 1){
@@ -212,6 +219,7 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
 					Dessiner_Texte_Encadrer(X/5,450,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(255, 0, 0),1);
 				}
             }
+            //+
 			if(_X>=3*X/10 -taille_h/2 && _Y>=450&& _X<=3*X/10 -taille_h/2+ taille_h && _Y<=450 + taille_h){
 				*taille_ini = *taille_ini + 1;
 				if(*taille_ini <= 99){
@@ -228,6 +236,7 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
             }
 
             //change le nbr de lignes
+            //+
 			if(_X>=X/1.75 -taille_h/2 && _Y>=420&& _X<=X/1.75 -taille_h/2+ taille_h && _Y<=420 + taille_h){
 				*C_Y = *C_Y - 1;
 				if(*C_Y >= 10){
@@ -256,7 +265,7 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
 					Dessiner_Texte_Encadrer(X/1.76,455,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(255, 0, 0),1);
 				}
 			}
-
+			//-
 			if(_X>=X/1.75 -taille_h/2 && _Y>=490&& _X<=X/1.75 -taille_h/2+ taille_h && _Y<=490 + taille_h){
 				*C_Y = *C_Y + 1;
 				if(*C_Y <= 750){
@@ -287,6 +296,7 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
 			}
 
             //change le nbr de colonnes
+            // +
 			if(_X>=X/1.2 -taille_h/2 && _Y>=420&& _X<=X/1.2 -taille_h/2+ taille_h && _Y<=420 + taille_h){
 				*C_X = *C_X - 1;
 				if(*C_X > 10){
@@ -320,7 +330,7 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
 					Dessiner_Texte_Encadrer(X/1.2,455,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(255, 0, 0),1);
 				}
 			}
-
+			//-
 			if(_X>=X/1.2 -taille_h/2 && _Y>=490&& _X<=X/1.2 -taille_h/2+ taille_h && _Y<=490 + taille_h){
 				*C_X = *C_X + 1;
 				if(*C_X < 1500){
@@ -361,6 +371,69 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
 				*continuer = 0;
                	break;
            	}
+           	//Reset
+           	if (_X>= 282 && _Y>= 19 && _X<= 316 && _Y<= 33){
+           		//printf("RESET\n");
+           		*intervale = 184;
+           		*C_X = 60;
+           		*C_Y = 40;
+           		*taille_ini = 10;
+           		*nbr_pommes = 5;
+           		if(*intervale == 184){
+		    		//Facile
+		    		Dessiner_Texte_Encadrer(X/6,150,"Facile",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),2);
+		    		
+		        	Dessiner_Texte_Encadrer(X/2,150,"Moyen",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
+		    		Dessiner_Texte_Encadrer(5*X/6,150,"Rapide",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
+				}
+				if(*intervale == 110){
+					//Moyen
+					Dessiner_Texte_Encadrer(X/2,150,"Moyen",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),2);
+
+					Dessiner_Texte_Encadrer( 5*X/6,150,"Rapide",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
+					Dessiner_Texte_Encadrer(X/6,150,"Facile",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
+				}
+				if(*intervale == 60){
+					//Rapide
+					Dessiner_Texte_Encadrer( 5*X/6,150,"Rapide",CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),2);
+
+					Dessiner_Texte_Encadrer(X/6,150,"Facile",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
+					Dessiner_Texte_Encadrer(X/2,150,"Moyen",CouleurParComposante(162,209,73),CouleurParComposante(0,0,0),2);
+				}
+				// '-'
+				Dessine_texte_carre(X/6,250,"-",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
+				//'nbr de pommes'
+				char Afficher[10];
+				sprintf(Afficher,"%d",*nbr_pommes);
+				Dessiner_Texte_Encadrer(X/2,250,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
+		    	// '+'
+		    	Dessine_texte_carre(5*X/6,250,"+",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
+
+		        // '-'
+		        Dessine_texte_carre(X/10,450,"-",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
+		        // 'Taille du serpent'
+				sprintf(Afficher,"%d",*taille_ini);
+		        Dessiner_Texte_Encadrer(X/5,450,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
+		        //'+'
+		        Dessine_texte_carre(3*X/10,450,"+",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
+
+    			// '-'
+		        Dessine_texte_carre(X/1.75,420,"-",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
+		        // 'nbr de lignes'
+				sprintf(Afficher,"%d",*C_Y);
+		        Dessiner_Texte_Encadrer(X/1.76,455,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
+		        //'+'
+		        Dessine_texte_carre(X/1.75,490,"+",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
+
+    			// '-'
+		        Dessine_texte_carre(X/1.2,420,"-",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
+		        // 'nbr de colonnes'
+				sprintf(Afficher,"%d",*C_X);
+		        Dessiner_Texte_Encadrer(X/1.2,455,Afficher,CouleurParComposante(0,0,0),CouleurParComposante(62, 86, 15),1);
+		        //'+'
+		        Dessine_texte_carre(X/1.2,490,"+",CouleurParComposante(0,0,0),CouleurParComposante(0,0,0),2);
+		    }
+
             //Retour au menu
 			if(_X>=550 - TailleChaineEcran("Retour",2)/2 && _Y>=580  && _X<=550 + TailleChaineEcran("Retour",2)/2  && _Y<=580 + TailleSupPolice(2)){
 				FermerGraphique();

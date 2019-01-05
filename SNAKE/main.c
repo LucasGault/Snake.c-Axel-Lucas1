@@ -11,14 +11,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+//Cette fonction sert à initialiser la partie 
 int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes,int intervale,int *score_p , int * niveau){
 	srand(time(NULL));
 	*niveau = 1;
 	int pommes_manger = nbr_pommes;
 	int nbr_obstacle =0;
 	Serpent * Serpent_1 = init_Serpent(taille_ini, C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini  ,echelle);
-	//position_serpent(&Serpent_1);
 	Pommes_liste * Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
 	Obstacle_liste * Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,Pommes_liste_1,echelle);
 	InitialiserGraphique();
@@ -39,12 +38,12 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes,int intervale,
 	unsigned long timer_1 = Microsecondes();
 	int timer_add = timer(timer_1,echelle,C_X,C_Y);;
 	dessine_arrierep(C_X, C_Y ,echelle);
-	//dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 	score(score_p,echelle,C_X,C_Y,*niveau);
 	dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
+
 	while (1){
+		
 		while(ToucheEnAttente() != 1 && debut == 0){
-			//dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 			dessine_debut(C_X,C_Y,echelle,*niveau);
 			timer_1 = Microsecondes() - timer_add;
 		}
@@ -97,15 +96,17 @@ int jeu(int C_X,int C_Y,int echelle,int taille_ini,int nbr_pommes,int intervale,
 					nbr_pommes++;
 					pommes_manger = nbr_pommes;
 					nbr_obstacle++;
-					if(intervale > 30){intervale= intervale - 5;}
-						intervale_last = intervale;
-						grandir = 0;
-						Serpent_1 = init_Serpent(taille_ini,C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini,echelle);
-						Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
-						Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,Pommes_liste_1,echelle);
-						Derniere_touche = XK_Up;
-						debut = 0;
-						dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
+					if(intervale > 30){
+						intervale= intervale - 5;
+					}
+					intervale_last = intervale;
+					grandir = 0;
+					Serpent_1 = init_Serpent(taille_ini,C_X/2 ,C_Y/2,nbr_pommes*2 + taille_ini,echelle);
+					Pommes_liste_1 = init_Pommes_liste(C_X,C_Y,nbr_pommes, echelle);
+					Obstacle_liste_1 = init_Obstacle_liste(C_X ,C_Y ,nbr_obstacle,Pommes_liste_1,echelle);
+					Derniere_touche = XK_Up;
+					debut = 0;
+					dessine_frame(Serpent_1,Pommes_liste_1,Obstacle_liste_1,echelle,C_X,C_Y);
 				}
 			}
 			if (Colli == C_Obstacle || Colli == C_Serpent ){

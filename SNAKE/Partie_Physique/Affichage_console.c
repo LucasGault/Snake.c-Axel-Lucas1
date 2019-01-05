@@ -1,3 +1,5 @@
+/*Cette page sert à affiche les informations (positions du serpent, nbr de pommes/obstacles, 
+taille du serpent ...) dans la console*/
 #include "Affichage_console.h"
 #include "Gestion_serpent.h"
 #include "Gestion_obstacle.h"

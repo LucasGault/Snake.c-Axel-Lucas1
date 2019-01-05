@@ -2,6 +2,8 @@
 #include "../Partie_Physique/Gestion_obstacle.h"
 #include <graph.h>
 #include <stdio.h>
+
+//affiche un ecran de pause
 void dessine_pause(int C_X, int C_Y,int echelle,int *couleur_pause, int * couleur_pause_m){
   ChoisirEcran(1);
   int bordure = 2*echelle;
@@ -24,6 +26,7 @@ void dessine_pause(int C_X, int C_Y,int echelle,int *couleur_pause, int * couleu
   EcrireTexte((C_X/2)*echelle - (taille/2),(C_Y/2)*echelle + TailleInfPolice(2)+TailleSupPolice(2),"Appuyez sur la touche espace pour reprendre",1.5);
   CopierZone(1,0,0,0,C_X*echelle,C_Y*echelle + 6*echelle,bordure,bordure);
 }
+//affiche le message de début
 void dessine_debut(int C_X, int C_Y,int echelle,int niveau){
   ChoisirEcran(1);
   int bordure = 2*echelle;
@@ -36,7 +39,7 @@ void dessine_debut(int C_X, int C_Y,int echelle,int niveau){
   EcrireTexte((C_X/2)*echelle - (taille/2),(C_Y/2)*echelle + TailleInfPolice(2)+TailleSupPolice(2),"Appuyez sur une touche pour commencer",1.5);
   CopierZone(1,0,0,0,C_X*echelle,C_Y*echelle + 6*echelle,bordure,bordure);
 }
-
+//affiche l'aarriere plan
 void dessine_arrierep(int C_X, int C_Y , int echelle){
   ChoisirEcran(0);
   ChoisirCouleurDessin(CouleurParComposante(87,138,52));
@@ -44,6 +47,7 @@ void dessine_arrierep(int C_X, int C_Y , int echelle){
   ChoisirCouleurDessin(CouleurParComposante(74,117,44));
   RemplirRectangle(0,C_Y * echelle + 4*echelle,C_X * echelle + 4 *echelle ,TailleInfPolice(2)+TailleSupPolice(2));
 }
+//dessine le serpent
 void dessine_serpent(Serpent *Serpent_1, int echelle){
   int nbr = Serpent_1->nbr_coord;
   int i;
@@ -52,6 +56,7 @@ void dessine_serpent(Serpent *Serpent_1, int echelle){
   int g = 155;
   int b = 255;
   int intensite = 2;
+  //sert a faire un dégrader
   if ( Serpent_1->last_coord + 1 - nbr >= 0){
     r = r - intensite * nbr;
     g = g - intensite * nbr;
@@ -131,7 +136,7 @@ void dessine_serpent(Serpent *Serpent_1, int echelle){
     }
   }
 }
-
+//affiche les pommes
 void dessine_pommes(Pommes_liste* Pommes_liste_1, int echelle){
 
   for (int i = 0 ; i < Pommes_liste_1->nbr_pommes ; i++){
@@ -140,7 +145,7 @@ void dessine_pommes(Pommes_liste* Pommes_liste_1, int echelle){
     }
   }
 }
-
+//affiche les obstacles
 void dessine_obstacle(Obstacle_liste * Obstacle_liste_1, int echelle){
   int sprite= ChargerSprite("pomme.png");
   for (int i = 0 ; i < Obstacle_liste_1->nbr_obstacle ; i++){
