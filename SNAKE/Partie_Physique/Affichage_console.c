@@ -6,6 +6,9 @@ taille du serpent ...) dans la console*/
 #include <stdio.h>
 
 void position_serpent(Serpent* Serpent_1){
+/*
+Cette fonction sert a afficher la position du serpent dans la console.
+*/
   int nbr = Serpent_1->nbr_coord;
   printf("Nombre de segment : %d\n", nbr);
   printf("Position de la tête : %d\n", Serpent_1->last_coord);
@@ -33,6 +36,9 @@ void position_serpent(Serpent* Serpent_1){
 }
 
 void position_pommes(Pommes_liste * Pommes_liste_1){
+  /*
+  Cette fonction sert a afficher la positions des pommes.
+  */
   int i;
   printf("Il y'a %d pommes\n",Pommes_liste_1->nbr_pommes);
   for (i = 0 ; i < Pommes_liste_1->nbr_pommes ; i++){
@@ -41,6 +47,9 @@ void position_pommes(Pommes_liste * Pommes_liste_1){
 }
 
 void position_obstacle(Obstacle_liste * Obstacle_liste_1){
+  /*
+  Cette fonction sert a afficher la positions des obstacles
+  */
   int i;
   printf("Il y'a %d Obstacle\n",Obstacle_liste_1->nbr_obstacle);
   for (i = 0 ; i < Obstacle_liste_1->nbr_obstacle; i++){
