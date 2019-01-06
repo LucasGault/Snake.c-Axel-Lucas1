@@ -4,6 +4,18 @@
 #include <time.h>
 
 int Pomme_obstacle(Pommes_liste *Pommes_liste_1,int X , int Y){
+	/* 
+	Cette fonction vérifie si des coordonés X ou Y sont égaux aux coordonés d'une des pommes , 
+	si oui elle renvoit 1 et si non , elle renvoit 0.
+	Variable 
+	--------
+	Pommes_liste_1 -> La liste des pommes à tester du type Pommes_liste
+	X -> Coordonés X à tester
+	Y -> Coordonés Y à tester
+	Retourne
+	--------
+	1 ou 0
+	*/
 	int i;
 	for (i = 0 ; i < Pommes_liste_1->nbr_pommes ; i++){
 		if (Pommes_liste_1->tab[i].Coord.X == X && Pommes_liste_1->tab[i].Coord.Y == Y){
@@ -13,6 +25,19 @@ int Pomme_obstacle(Pommes_liste *Pommes_liste_1,int X , int Y){
 	return 0;
 }
 int Pomme_Pomme(Pommes_liste* Pommes_liste_1,int X , int Y , int i){
+	/*
+	Cette fonction vérifie si des coordonés X ou Y sont égaux aux coordonés d'une des pommes , 
+	si oui elle renvoit 1 et si non , elle renvoit 0.
+	Variable 
+	--------
+	Pommes_liste_1 -> La liste des pommes à tester du type Pommes_liste
+	X -> Coordonés X à tester
+	Y -> Coordonés Y à tester
+	i -> derniére position de la pommes
+	Retourne
+	--------
+	1 ou 0
+	*/
 	int j;
 	for (j = 0 ; j < i ; j++){
 		if (Pommes_liste_1->tab[j].Coord.X == X && Pommes_liste_1->tab[j].Coord.Y == Y) {
@@ -22,6 +47,18 @@ int Pomme_Pomme(Pommes_liste* Pommes_liste_1,int X , int Y , int i){
 	return 0;
 }
 int Obstacle_Obstacle(Obstacle_liste* Obstacle_liste_1,int X , int Y , int i){
+	/* 
+	Cette fonction vérifie si des coordonés X ou Y sont égaux aux coordonés d'un des obstacles , 
+	si oui elle renvoit 1 et si non , elle renvoit 0.
+	Variable 
+	--------
+	Obstacle_liste_1 -> La liste des pommes à tester du type Pommes_liste
+	X -> Coordonés X à tester
+	Y -> Coordonés Y à tester
+	Retourne
+	--------
+	1 ou 0
+	*/
 	int j;
 	for (j = 0 ; j < i ; j++){
 		if (Obstacle_liste_1->tab[j].Coord.X == X && Obstacle_liste_1->tab[j].Coord.Y == Y) {
