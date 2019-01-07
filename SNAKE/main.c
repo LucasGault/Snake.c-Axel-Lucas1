@@ -139,6 +139,7 @@ int main(){
 		if (lancer_jeu == 1){
 			continuer = 1;
 			lancer_jeu = 0;
+			score_p = 0;
 			jeu(C_X,C_Y,echelle,taille_ini,nbr_pommes,intervale,&score_p,&niveau);
 		}
 	}

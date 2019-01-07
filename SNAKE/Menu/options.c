@@ -371,8 +371,9 @@ void Options(int X,int Y,int* continuer,int * nbr_pommes, int * taille_ini,int *
 				*continuer = 0;
                	break;
            	}
+           	
            	//Reset
-           	if (_X>= 282 && _Y>= 19 && _X<= 316 && _Y<= 33){
+			if(_X>=X/2 - TailleChaineEcran("Reset",2)/2 && _Y>=20  && _X<=X/2 + TailleChaineEcran("Reset",2)/2  && _Y<=20 + TailleSupPolice(2)){
            		//printf("RESET\n");
            		*intervale = 184;
            		*C_X = 60;
