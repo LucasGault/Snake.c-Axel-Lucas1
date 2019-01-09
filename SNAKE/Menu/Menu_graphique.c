@@ -1,5 +1,4 @@
 #include "Menu_graphique.h"
-#include "jeu.h"
 #include "options.h"
 #include "menu.h"
 #include <stdlib.h>
